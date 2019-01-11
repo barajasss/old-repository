@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Multi Dimensional array</title>
+		<style>
+			body{
+				background-color: green;
+			}
+			div{
+				background-color: blue;
+				color: gold;
+				font-family: "Arial black";
+				border-radius: 10px;
+				border: 1px solid black;
+				font-size: 22px;
+				margin-top: 10px;
+				padding: 5px;
+				transition: 1s;
+			}
+			h1{
+				text-align: center;
+				color: white;
+				text-transform: underline;
+				font-family: jokerman;
+				text-shadow: 2px 2px 5px black;
+				font-size: 35px;
+				word-spacing: 10px;
+				letter-spacing: 3px;
+			}
+			button{
+				padding: 3px;
+				border-radius: 5px;
+				background-color: red;
+				color: white;
+				transition: 0.5s;
+				cursor: pointer;
+			}
+			button:hover{
+				background-color: orange;
+			}
+		</style>
+	</head>
+	<body>
+		<h1>Funny text generator</h1>
+		<button id="change">Change text</button>
+		<div id="display">			
+		</div>
+		<script>
+			var names = ["Ash", "Herman", "David", "John", "Michael", "Raju", "Mohit", "Adam", "Lucy", "George", "Peter", "Ben", "Sam", "Pat", "Albert", "Kim", "Susan", "Sonia", "Sophia", "Alan", "Bobby", "Bob", "Tom", "Famby", "Finn", "Roshi", "Luke", "Jonna", "Hiroshi"];
+
+			var titles = ["Das", "Smith", "Einstein", "Nocturne", "Swift", "Cruise", "Bose", "Tennyson", "San","Nohara"];
+
+			var pets = ["dog", "persian cat", "elephant", "pig", "rat", "cow", "horse", "goat", "donkey", "parrot", "rabbit", "hen", "bull", "cock", "fish"];
+
+			var places = ["Germany","London","USA","India","Antartica","Egypt", "Afghanistan","Pakistan","Bhutan","Japan","Russia", "China"];
+
+			var foods = ["broccoli", "cabbage", "carrot", "potato", "tomato", "onion", "garlic", "apple", "banana", "mango", "pomgranate", "pumpkin", "avocado", "cauliflower", "pancakes", "pie", "chips", "bread", "eggplant", "egg", "fish", "pork", "chicken", "bacon", "bitter gourd", "raddish", "yard long beans", "green beans", "spinach", "onion greens", "soy beans", "mustard greens", "eggyolk", "chilli", "eggwhite", "bellpepper", "momo", "noodles", "dosa", "bun", "french fries"];
+
+			var games = ["chess", "badminton", "javelin throw", "discuss throw", "hammer throw", "tennis", "table tennis", "football", "baseball", "cricket", "volleyball", "running race", "musical chair", "tic tac toe", "slide puzzle", "jigsaw puzzle"];
+
+			var schools = ["St. Francis School", "St. Mary's School", "Little Flower School", "Angels of God School", "Harvard University", "Stanford University", "Cotton University", "Gauhati University", "Delhi University", "MIT", "home"];
+			var div = document.getElementById("display");
+			var button = document.getElementById("change");
+			button.onclick = function(){
+				var rand = Math.floor(Math.random() * places.length);
+				var rand2 = Math.floor(Math.random() * foods.length);
+				var rand3 = Math.floor(Math.random() * games.length);
+				var rand4 = Math.floor(Math.random() * schools.length);
+				var rand5 = Math.floor(Math.random() * names.length);
+				var rand6 = Math.floor(Math.random() * titles.length);
+				var rand7 = Math.floor(Math.random() * pets.length);
+				div.innerHTML = "Your name is " + names[rand5] + " " + titles[rand6] +". You live in " + places[rand] + ", eat " + foods[rand2] + " and you like to play " + games[rand3] + "." + " You study at " + schools[rand4] + ". You have a " + pets[rand7] + ".";
+			}
+		</script>
+	</body>
+</html>
