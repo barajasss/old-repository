@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Flappy Bird</title> 
+	<style>
+		body{
+			background: #040;
+			text-align: center;
+		}
+		h2{
+			color: white;
+		}
+		canvas{
+			background-color: green;
+			background-image: url("images/background.png");
+			transition: 1s;
+		}
+	</style>
+</head>
+<body>
+	<h2>Flappy Bird</h2>
+	<canvas id="canvas" width="340px" height="460px">
+	</canvas>
+	<script>
+		var canvas=document.getElementById("canvas");
+		var ctx=canvas.getContext("2d");
+		//initial images for below score 10
+		var bird=new Image();
+		var background=new Image();
+		var foreground=new Image();
+		var pipeNorth=new Image();
+		var pipeSouth=new Image();
+		//images after score 10
+		var bird2=new Image();
+		var background2=new Image();
+		var foreground2=new Image();
+		var pipeNorth2=new Image();
+		var pipeSouth2=new Image();
+		//images after score 20
+		var bird3=new Image();
+		var background3=new Image();
+		var foreground3=new Image();
+		var pipeNorth3=new Image();
+		var pipeSouth3=new Image();
+
+		//images after score 30
+		var bird4=new Image();
+		var background4=new Image();
+		var foreground4=new Image();
+		var pipeNorth4=new Image();
+		var pipeSouth4=new Image();
+
+		var soundPlayed=false;
+		var gravity=1.7;
+		var flyAboveSpeed=40;
+		var gap=110;
+		var bX=20;
+		var bY=100;
+		var score=0;
+		var backgroundMusic=new Audio();
+		var fly=new Audio();
+		var fly2=new Audio();
+		var fly3=new Audio();
+		var fly4=new Audio();
+		backgroundMusic.src="sounds/background.mp3";
+		fly.src="sounds/fly.wav";
+		fly2.src="sounds/fly2.wav";
+		fly3.src="sounds/fly3.wav";
+		fly4.src="sounds/fly4.wav";
+		var pipe=[];
+		pipe[0]={
+			x: canvas.width,
+			y: -70
+		};
+		//locations for all images...
+		bird.src="images/bird.png";
+		background.src="images/background.png";
+		foreground.src="images/foreground.png";
+		pipeNorth.src="images/pipeNorth.png";
+		pipeSouth.src="images/pipeSouth.png";
+
+		bird2.src="images/bird2.png";
+		background2.src="images/background2.png";
+		foreground2.src="images/foreground2.png";
+		pipeNorth2.src="images/pipeNorth2.png";
+		pipeSouth2.src="images/pipeSouth2.png";
+
+		bird3.src="images/bird3.png";
+		background3.src="images/background3.png";
+		foreground3.src="images/foreground3.png";
+		pipeNorth3.src="images/pipeNorth3.png";
+		pipeSouth3.src="images/pipeSouth3.png";
+
+		bird4.src="images/bird4.png";
+		background4.src="images/background4.png";
+		foreground4.src="images/foreground4.png";
+		pipeNorth4.src="images/pipeNorth4.png";
+		pipeSouth4.src="images/pipeSouth4.png";
+		document.addEventListener("keydown", function(){
+			bY-=flyAboveSpeed;
+		}, false);
+		document.addEventListener("click", function(){
+			bY-=flyAboveSpeed;
+		}, false);
+		document.addEventListener("keydown", function(){
+			if(soundPlayed==false)
+				backgroundMusic.play();
+			backgroundMusic.volume=20;
+			soundPlayed=true;
+		}, false);
+		
+		function draw(){
+			bY+=gravity;
+			ctx.clearRect(0, 0, canvas.width, canvas.height);
+			ctx.fill();
+			for(var i=0; i<pipe.length; i++){
+				if(score>=0&&score<10||score>=40&&score<50||score>=80){
+					canvas.style.backgroundImage='url("images/background.png")';
+					ctx.drawImage(pipeNorth, pipe[i].x, pipe[i].y);
+					var constant=pipeNorth.height+gap;
+					ctx.drawImage(pipeSouth, pipe[i].x, pipe[i].y+constant);
+					ctx.drawImage(foreground, 0, canvas.height-foreground.height);	
+					ctx.drawImage(bird, bX, bY);
+				}				
+				else if(score>=10&&score<20||score>=50&&score<60){
+					canvas.style.backgroundImage='url("images/background2.png")';
+					ctx.drawImage(pipeNorth2, pipe[i].x, pipe[i].y);
+					var constant=pipeNorth2.height+gap;
+					ctx.drawImage(pipeSouth2, pipe[i].x, pipe[i].y+constant);
+					ctx.drawImage(foreground2, 0, canvas.height-foreground.height);	
+					ctx.drawImage(bird2, bX, bY);
+				}
+				else if(score>=20&&score<30||score>=60&&score<70){
+					canvas.style.backgroundImage='url("images/background3.png")';
+					ctx.drawImage(pipeNorth3, pipe[i].x, pipe[i].y);
+					var constant=pipeNorth3.height+gap;
+					ctx.drawImage(pipeSouth3, pipe[i].x, pipe[i].y+constant);
+					ctx.drawImage(foreground3, 0, canvas.height-foreground.height);	
+					ctx.drawImage(bird3, bX, bY);
+				}
+
+				else if(score>=30&&score<40||score>=70&&score<80){
+					canvas.style.backgroundImage='url("images/background4.png")';
+					ctx.drawImage(pipeNorth4, pipe[i].x, pipe[i].y);
+					var constant=pipeNorth4.height+gap;
+					ctx.drawImage(pipeSouth4, pipe[i].x, pipe[i].y+constant);
+					ctx.drawImage(foreground4, 0, canvas.height-foreground.height);	
+					ctx.drawImage(bird4, bX, bY);
+				}
+				
+				pipe[i].x--;
+				if(pipe[i].x==canvas.width-140){
+					pipe.push({
+						x: canvas.width,
+						y: Math.floor(Math.random()*(pipeNorth.height-50))-pipeNorth.height+30
+					});
+				}
+				//check collision
+				if(bX+bird.width>=pipe[i].x&&bX<=pipe[i].x+pipeNorth.width&&(
+					bY<pipe[i].y+pipeNorth.height||bY+bird.height>pipe[i].y+constant)||bird.height+bY>canvas.height-foreground.height){
+					location.reload();
+					console.log("died");
+				}
+				if(pipe[i].x==7){
+					if(score>=0&&score<10||score>=40&&score<50||score>=80){
+						fly.play();
+					}
+					else if(score>=10&&score<20||score>=50&&score<60){
+						fly2.play();
+					}
+					else if(score>=20&&score<30||score>=60&&score<70){
+						fly3.play();
+					}
+					else if(score>=30&&score<40||score>=70&&score<80){
+						fly4.play();
+					}
+					score++;
+					console.log(score);
+				}
+				if(score<15&&score>=0){
+					ctx.font="30px arial";
+					ctx.fillStyle="white";
+					ctx.fillText("Score: "+score, 15, canvas.height-15);
+				}
+				else if(score>=15&&score<30){
+					ctx.fillStyle="silver";
+					ctx.font="30px arial";
+					ctx.fillText("Silver Score: "+score, 10, canvas.height-15);
+				}
+				else if(score>=30&&score<45){
+					ctx.fillStyle="gold";
+					ctx.font="30px arial";
+					ctx.fillText("Gold Score: "+score, 10, canvas.height-15);
+				}
+				else if(score>=45&&score<60){
+					ctx.fillStyle="orange";
+					ctx.font="30px arial";
+					ctx.fillText("Platinum Score: "+score, 10, canvas.height-15);
+				}
+				else if(score>=60){
+					ctx.fillStyle="green";
+					ctx.font="35px arial";
+					ctx.fillText("Diamond Score: "+score, 10, canvas.height-15);
+				}
+				
+			}
+			requestAnimationFrame(draw);
+		}
+		draw();
+	</script>
+</body>
+</html>
