@@ -1,94 +1,103 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>
-		Test
-	</title>
+	<meta name = "viewport" content = "width=device-width, initial-scale=1.0, user-scalable=no">
+	<title>HTML Paint</title>
 	<style>
-		body{
-			background: linear-gradient(to right, black, gold);
-			color: gold;
-		}
 		canvas{
-			background: white;
-			border: 10px ridge white;
+			border: 1px solid black;
+			background-color: white;
 		}
-		#colorName{
-			color: white;
-			padding: 5px;
-			font-size: 30px;
-			border-radius: 5px;
-			background: linear-gradient(to right, red, orange, yellow, green, violet , indigo, blue);
+		:fullscreen{
+			background-image: linear-gradient(70deg, red, orange);
 		}
-		#clearBtn{
-			padding: 5px;
-			font-size: 30px;
-			border-radius: 5px;
-			background: linear-gradient(to right, green, lightgreen);
-			transition: all 0.5s;
-		}
-		#clearBtn:hover{
-			background: linear-gradient(to right, lightgreen, green);
-			cursor: pointer;
+		@media screen and (max-width: 500px){
+			canvas{
+				width: 80%;
+			}
 		}
 	</style>
 </head>
 <body>
-	<h1>HTML 5 Canvas Paint</h1>
-	<canvas id="canvas" height="300px" width="600px"></canvas>
+	<h1>Canvas Paint</h1>
+	<canvas id="canvas" height="300px" width="500px">
+		Canvas is not supported. Update your browser.
+	</canvas>
 	<br>
-	<input id="colorName" type="text" placeholder="Enter color name" value="black">
-	<button id="clearBtn">Clear Canvas</button>
-
+	<button id="btn">Full Screen Canvas</button>
+	<br>
+	Thickness: 1px<input type="radio" id="thickness1" value = 1 name="thickness" checked> 2px<input type="radio" value = 2 name="thickness" id="thickness2"> 3px<input type="radio" value = 3 name="thickness" id="thickness3">
 	<script>
 		var canvas = document.getElementById("canvas");
 		var ctx = canvas.getContext("2d");
-		var colorBtn = document.getElementById("colorBtn");
-		var clearBtn = document.getElementById("clearBtn");
-		var colorDisplay = document.getElementById("colorDisplay");
-		var colorName = document.getElementById("colorName");
-		//default colors
-		var size = 5;
-		var fillColor = "black";
-		var strokeColor = "black";
+		var offsetX = -3;
+		var offsetY = -78;
+		var oldX, oldY, newX, newY;
 		var mousedown = false;
-		var mouseup = false;
-		ctx.fillStyle = fillColor;
-
-		colorName.addEventListener("change", function(){
-			fillColor = document.getElementById("colorName").value;
-			ctx.fillStyle = fillColor;
-		}, false);
-		clearBtn.addEventListener("click", function(){
-			ctx.clearRect(0, 0, canvas.width, canvas.height);
-		}, false);
-
-
-
-		//event handlers
-		document.onmousedown = function(e){
-			mousedown = true;
-			mouseup = false;
-		}	
-		document.onclick = function(e){
-			ctx.beginPath();
-			ctx.arc(e.clientX-10, e.clientY-80, size, 0, 2*Math.PI, false);
-			ctx.fill();
-			ctx.closePath();
-		}
-		document.onmousemove = function(e){
-			//only draw if mouse is down...
-			if(mousedown && !mouseup){
-				ctx.beginPath();
-				ctx.arc(e.clientX-10, e.clientY-80, size, 0, 2*Math.PI, false);
-				ctx.fill();
-				ctx.closePath();
+		var thickness = 1;
+		var radio = document.querySelectorAll("input[type='radio']");
+		radio[0].onchange = update;
+		radio[1].onchange = update;
+		radio[2].onchange = update;
+		function update(){
+			for(var i=0; i<radio.length; i++){
+				if(radio[i].checked){
+					thickness = radio[i].value;
+				}
 			}
 		}
-		document.onmouseup = function(){
-			mouseup = true;
+		var btn = document.getElementById("btn");
+		document.addEventListener("mousedown", function(e){
+			mousedown = true;
+			ctx.lineWidth = thickness;
+			oldX = e.clientX + offsetX;
+			oldY = e.clientY + offsetY;
+		}, false);
+		document.addEventListener("mousemove", function(e){
+			if(mousedown){
+				newX = e.clientX + offsetX;
+				newY = e.clientY + offsetY;
+				ctx.beginPath();
+				ctx.moveTo(oldX, oldY);
+				ctx.lineTo(newX, newY);
+				ctx.stroke();
+				ctx.closePath();
+				oldX = newX;			
+				oldY = newY;
+			}
+		}, false);
+		document.addEventListener("mouseup", function(){
 			mousedown = false;
+		})
+
+
+		document.addEventListener("touchstart", function(e){
+			ctx.lineWidth = thickness;
+			oldX = e.touches[0].clientX + offsetX;
+			oldY = e.touches[0].clientY + offsetY;
+		}, false);
+		document.addEventListener("touchmove", function(e){
+			e.preventDefault();
+			var touch = e.touches[0];
+			newX = touch.clientX + offsetX;
+			newY = touch.clientY + offsetY;
+			ctx.beginPath();
+			ctx.moveTo(oldX, oldY);
+			ctx.lineTo(newX, newY);
 			ctx.closePath();
+			oldX = newX;
+			oldY = newY;
+		}, false);
+
+		btn.onclick = function(){
+			/*
+			canvas.setAttribute("width", "100%");
+			canvas.setAttribute("height", "100%");
+			offsetX = -150;
+			offsetY = -120;
+			*/
+			//document.documentElement.requestFullscreen();
+			canvas.requestFullscreen();
 		}
 	</script>
 </body>
