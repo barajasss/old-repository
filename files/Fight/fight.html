@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Fight</title>
+		<style>
+			canvas#canvas{
+				position: relative;
+			}
+			progress#lefthp{
+				display: inline;
+			}
+			progress#righthp{
+				display: inline;
+			}
+			div.attacks-container{
+				height: 70px;
+				background-color: purple;
+				padding: 5px;
+			}
+			div.attacks-container2{
+				height: 70px;
+				background-color: pink;
+				padding: 5px;
+			}
+			button.attacks{
+				background-color: yellow;
+				color: black;
+				margin: 3px;
+				padding: 3px;
+				cursor: pointer;
+				border: 3px solid blue;
+			}
+			div#o-drawer{
+				height: 80px;
+				width: 50px;
+				line-height: 14px;
+				cursor: pointer;
+				font-size: 80px;
+				background-color: #cff;
+				text-align: center;
+			}
+			div.settings{
+				background-color: blue;
+				height: 200px;
+				width: 0;
+				transition: 0.6s;
+				opacity: 0;
+			}
+			div.settings:hover{
+				background-color: black;
+				border: white;
+			}
+			div#c-drawer{
+				height: 80px;
+				width: 50px;
+				font-size: 50px;
+				background-color: white;
+				color: blue;
+				cursor: pointer;
+				text-align: center;
+			}
+			div#c-drawer:hover{
+				background-color: orange;
+				color: blue;
+			}
+			span.blinkon{
+				-webkit-animation: getblink 0.8s infinite;
+			}
+			@-webkit-keyframes getblink{
+				0%{
+					visibility: none;
+				}
+				50%{
+					visibility: hidden;
+				}
+				100%{
+					visibility: none;
+				}
+			}
+			div.Full Screen{
+				background-color: lightblue;
+			}
+			div#xp-bar-1{
+				height: 30px;
+				width: 25%;
+				background-color: blue;
+				border: 1px solid black;
+				color: orange;
+				display: inline;
+			}
+			div#xp-bar-2{
+				height: 10%;
+				display: inline;
+				width: 10%;
+				background-color: blue;
+				color: orange;
+			}
+		</style>
+	</head>
+	<body>
+		<div id = "o-drawer">
+			-
+			-
+			-
+		</div>
+		<br><br>
+		<div id = "display" class = "settings">
+			<button id = "c-drawer"><span id = "blinkon">X</span></button><br><br>
+			<button id = "o-fullscreen" class = "Full Screen"><span class = "blinkon">Open Full Screen</span></button><br>
+			<button id = "c-fullscreen" class = "Full Screen"><span class = "blinkon">Close Full Screen</span></button><br>
+		</div>
+		<br><br>
+		Player 1 xp<progress id = "xp-bar-1" min = 0 max = 100 value = 0></progress>
+		Player 2 xp<progress id = "xp-bar-2" min = 0 max = 100 value = 0></progress><br>
+		<span class = "hp-bar-1">Player 1 hp:</span><progress id = "lefthp" min = "0" max = "100" value = "100"></progress>
+		<span class = "hp-bar-2">Player 2 hp:</span><progress id = "righthp" min = "0" max = "100" value = "100"></progress><br>
+		Player 1 bullets left:<progress id = "bullets-bar-1" min = "0" max = "100" value = "100"></progress>
+		Player 2 bullets left:<progress id = "bullets-bar-2" min = "0" max = "100" value = "100"></progress>
+		<br>
+		<canvas id = "canvas" height = "410px" width = "950px">
+			Sorry, but the canvas is not supported
+		</canvas>
+		<div id = "Cowboy_1_attacks" class = "attacks-container">
+			<center>
+				<h1>Player 1 container:</h1>
+				<button id = "cowboy1_attack1" class = "attacks">Bullet</button>
+				<button id = "cowboy1_attack2" class = "attacks">Mega Bullet</button><br>
+				<button id = "cowboy1_attack3" class = "attacks">Bullet Blast</button>
+				<button id = "cowboy1_attack4" class = "attacks">Bullet Bull</button>
+			</center>
+		</div>
+		<br>
+		<div id = "Cowboy_2_attacks" class = "attacks-container2">
+			<center>
+				<h1>Player 2 cotainer</h1>
+				<button id = "cowboy2_attack1" class = "attacks">Bullet</button>
+				<button id = "cowboy2_attack2" class = "attacks">Sky bullet</button><br>
+				<button id = "cowboy2_attack3" class = "attacks">Super Bullet</button>
+				<button id = "cowboy2_attack4" class = "attacks">Huge bullet</button>
+			</center>
+		</div>
+		<script>
+			//variables
+
+			//main attack container variables
+			var attackContainer1 = document.getElementById("Cowboy_1_attacks");
+			var attackContainer2 = document.getElementById("Cowboy_2_attacks");
+			//variables of health
+			var hp1 = document.getElementById("lefthp");
+			var hp2 = document.getElementById("righthp");			
+			var health = 100;
+			var health2 = 100;
+			var bulletDamage = 10;
+			var megaBulletDamage = 40;
+			var bulletBlastDamage = 30;
+			var bulletBullDamage = 20;
+			//variables of cowboy 2 attack damage
+
+			//the bullet attack of cowboy 2 is already in the cowboy one so we can use the variable bulletattack from cowboy 1 variables to reuse  
+			var skyBulletDamage = 25;
+			var hugeBulletDamage = 30;
+			var superBulletDamage = 40;
+
+			//xp variables
+			var xpBar1 = document.getElementById("xp-bar-1");
+			var xpBar2 = document.getElementById("xp-bar-2");
+
+			//bullet variables
+			//cowboy 1 bullet varaibles
+			var bulletBar1 = document.getElementById("bullets-bar-1");
+			var bulletBar2 = document.getElementById("bullets-bar-2");
+			var bullets = 100;
+			var bulletAttack = 3;
+			var megaBulletAttack = 5;
+			var bulletBlast = 10;
+			var bulletBull = 5;
+			//cowboy 2 bullet variables
+
+			//the bullet attack of cowboy 2 is already in the cowboy one so we can use the variable bulletattack from cowboy 1 variables to reuse 
+			var skyBulletAttack = 15;
+			var hugebulletAttack = 5;
+			var superBulletAttack = 20;
+			//end of bullet variables
+
+			//variables of canvas
+			var canvas = document.getElementById("canvas");
+			var ctx = canvas.getContext('2d');
+			var cW = canvas.width;
+			var cH = canvas.height;
+			var background = new Image();
+			var cowboy1 = new Image();
+			var cowboy2 = new Image();
+			//Cowboy 1 attack variables
+			var cowboy1Bullet = document.getElementById("cowboy1_attack1");
+			var cowboy1MegaBullet = document.getElementById("cowboy1_attack2");
+			var cowboy1BulletBull = document.getElementById("cowboy1_attack3");
+			var cowboy1BulletBlast = document.getElementById("cowboy1_attack4");
+			//Cowboy 2 attack variables
+			var cowboy2Bullet = document.getElementById("cowboy2_attack1");
+			var cowboy2SkyBullet = document.getElementById("cowboy2_attack2");
+			var cowboy2HugeBullet = document.getElementById("cowboy2_attack3");
+			var cowboy2SuperBulllet = document.getElementById("cowboy2_attack4");
+			//drawer variables
+			var oDrawer = document.getElementById("o-drawer");
+			var cDrawer = document.getElementById("c-drawer");
+			//fullscreen variables
+			var oFullScreen = document.getElementById("o-fullscreen");
+			var cFullScreen = document.getElementById("c-fullscreen");
+			//image urls or image links
+			background.src = "images/background.jpg";
+			cowboy1.src = "images/cowboy.png";
+			cowboy2.src = "images/cowboy2.png";
+
+			background.onload = function(){
+				//ctx.drawImage("image url", x position, y position, width, height);
+				ctx.drawImage(background, 0, 0, cW, cH);
+			}
+			cowboy1.onload = function(){
+				ctx.drawImage(cowboy1, 70, 136, 150, 150);
+			}
+			cowboy2.onload = function(){
+				ctx.drawImage(cowboy2, 750, 142, 150, 150);
+			}
+			oDrawer.onclick = function(){
+				display.style.width = "200px";
+				display.style.opacity = 1;
+			}
+			cDrawer.onclick = function(){
+				display.style.width = "0";
+				display.style.opacity = "0";
+			}
+			oFullScreen.onclick = function(){
+				document.documentElement.requestFullscreen();
+			}
+			cFullScreen.onclick = function(){
+				document.exitFullscreen();
+			}
+			//Cowboy 1 or the player 1 attack functions
+			//Cowboy bullet attack function
+			cowboy1Bullet.onclick = function(){
+				if(bullets == 0){
+					alert("You can't use bullet attacks anymore");
+				}				
+				else{
+					/*There are already the variables for hp2.setAttribute()
+					the health's value gets subtracted when we click the button by the variable bullet types damage the bullets value is used to subtract so the value is still in the place just the whole variable is called and we can use variables for many times as we want*/
+					bulletBar1.setAttribute("value", bullets -= bulletAttack)
+					hp2.setAttribute("value", health -= bulletDamage);
+					attackContainer1.style.opacity = 0;
+					attackContainer2.style.opacity = 1;
+				}
+			}
+			//Cowboy1 megabullet attack function
+			cowboy1MegaBullet.onclick = function(){
+				if(bullets == 0){
+					alert("You can't use bullet attacks anymore");
+				}
+				else{				
+					bulletBar1.setAttribute("value", bullets -= megaBulletAttack);
+					hp2.setAttribute("value", health -= megaBulletDamage);
+					attackContainer1.style.opacity = 0;
+					attackContainer2.style.opacity = 1;
+				}
+				if(health <= 0){
+					alert("Player 1 is dead");
+				}
+			}
+			//Cowboy1 bulletblast attack function
+			cowboy1BulletBlast.onclick = function(){
+				if(bullets == 0){
+					alert("You can't use bullet attacks anymore");
+				}				
+				else{
+					bulletBar1.setAttribute("value", bullets -= bulletBlast);
+					hp2.setAttribute("value", health -= bulletBlastDamage);
+					attackContainer1.style.opacity = 0;
+					attackContainer2.style.opacity = 1;
+				}
+				if(health <= 0){
+					alert("Player 1 is dead");
+				}
+			}
+			//Cowboy1 bulletbull attack function
+			cowboy1BulletBull.onclick = function(){
+				if(bullets == 0){
+					alert("You can't use bullet attacks anymore");
+				}				
+				else{
+					bulletBar1.setAttribute("value", bullets -= bulletBull);
+					hp2.setAttribute("value", health -= bulletBullDamage);
+					attackContainer1.style.opacity = 0;
+					attackContainer2.style.opacity = 1;
+				}
+				if(health <= 0){
+					alert("Player 1 is dead");
+				}
+			}
+			//Cowboy 2 or the player 2 attack functions
+			//Cowboy 2 bullet attack function
+			cowboy2Bullet.onclick = function(){
+				if(bullets == 0){
+					alert("You have no bullets left to attack anymore");
+				}
+				else{
+					bulletBar2.setAttribute("value", bullets -= bulletAttack);
+					hp2.setAttribute("value", health2 -= bulletDamage);
+					attackContainer2.style.opacity = 0;
+					attackContainer1.style.opacity = 1;
+				}
+				if(health <= 0){
+					alert("Player 1 is dead");
+				}
+			}
+			cowboy2SkyBullet.onclick = function(){
+				if(bullets == 0){
+					alert("You have no bulllets left to attack anymore");
+				}
+				else{
+					bulletBar2.setAttribute("value", bullets -= skyBulletAttack);
+					hp1.setAttribute("value", health2 -= skybulletDamage);
+					attackContainer2.style.opacity = 0;
+					attackContainer1.style.opacity = 1;
+				}
+			}
+			cowboy2HugeBullet.onclick = function(){
+				if(bullets == 0){
+					alert("You have no bulllets left to attack anymore");
+				}
+				else{
+					bulletBar2.setAttribute("value", bullets -= hugebulletAttack);
+					hp1.setAttribute("value", health2 -= hugeBulletDamage);
+					attackContainer2.style.opacity = 0;
+					attackContainer1.style.opacity = 1;
+				}
+			}
+			cowboy2SuperBulllet.onclick   = function(){
+				if(bullets == 0){
+					alert("You have no bulllets left to attack anymore");
+				}
+				else{
+					bulletBar2.setAttribute("value", bullets -= superBulletAttack);
+					hp1.setAttribute("value", health2 -= superBulletDamage);
+					attackContainer2.style.opacity = 0;
+					attackContainer1.style.opacity = 1;
+				}
+			}
+		</script>
+	</body>
+</html>
