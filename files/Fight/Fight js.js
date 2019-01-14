@@ -112,6 +112,14 @@ cowboy2.onload = function(){
 	ctx.drawImage(cowboy2, 750, 162, 150, 150);
 }
 
+oDrawer.onclick = function(){
+		display.style.width = "200px";
+		display.style.opacity = 1;
+}
+cDrawer.onclick = function(){
+		display.style.width = "0";
+		display.style.opacity = 0;
+}
 oFullScreen.onclick = function(){
 	if(document.documentElement.requestFullscreen)
 		document.documentElement.requestFullscreen();
