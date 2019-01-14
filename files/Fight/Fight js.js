@@ -124,12 +124,6 @@ cFullScreen.onclick = function(){
 	else if(document.mozCancelFullScreen)
 		document.mozCancelFullScreen();
 }
-oFullScreen.onclick = function(){
-	document.documentElement.requestFullscreen();
-}
-cFullScreen.onclick = function(){
-	document.exitFullscreen();
-}
 //Cowboy 1 or the player 1 attack functions
 //Cowboy bullet attack function
 function checkHealth(){
