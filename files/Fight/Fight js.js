@@ -42,6 +42,7 @@ var superBulletDamage = 40;
 var xpBar1 = document.getElementById("xp-bar-1");
 var xpBar2 = document.getElementById("xp-bar-2");
 var xp = 0;
+var xp2 = 0;
 var xpadd = 10;
 var xpadd2 = 10;
 
@@ -149,18 +150,33 @@ function checkHealth(){
 function initialize(){
 	health = 250;
 	health2 = 250;
-	bullets = 130;
-	bullets2 = 150;  
 	hp1.setAttribute("value", health);
 	hp2.setAttribute("value", health2);
+
+	bullets = 130;
+	bullets2 = 150;  	
 	bulletBar1.setAttribute("value", bullets);
 	bulletBar2.setAttribute("value", bullets2);
+	bulletCounter = 0;
+	bulletCounter2 = 0;
+
 	attackContainer1.style.opacity = 1;
 	attackContainer2.style.opacity = 1;
+
+	counter = 0;
+	counter2 = 0;
+
+	interval1 = setInterval(checkHealth, 500);
+	interval2 = setInterval(checkHealth2, 500);	
+
+	var xp = 0;
+	var xp2 = 0;
+	xpBar1.setInterval("value", xp);
+	xpBar2.setInterval("value", xp);
 }
 cowboy1Bullet.onclick = function(){
 	if(bulletCounter == 0 && bullets == 0){
-		alert("You can't use bullet attacks anymore");
+		alert("Player 1 You can't use bullet attacks anymore");
 		bulletCounter++;
 	}
 	else{
@@ -175,7 +191,7 @@ cowboy1Bullet.onclick = function(){
 //Cowboy1 megabullet attack function
 cowboy1MegaBullet.onclick = function(){
 	if(bulletCounter == 0 && bullets == 0){
-		alert("You can't use bullet attacks anymore");
+		alert("Player 1 You can't use bullet attacks anymore");
 		bulletCounter++;
 	}
 	else{
@@ -188,7 +204,7 @@ cowboy1MegaBullet.onclick = function(){
 //Cowboy1 bulletblast attack function
 cowboy1BulletBlast.onclick = function(){
 	if(bulletCounter == 0 && bullets == 0){
-		alert("You can't use bullet attacks anymore");
+		alert("Player 1 You can't use bullet attacks anymore");
 		bulletCounter++;
 	}
 	else{
@@ -201,7 +217,7 @@ cowboy1BulletBlast.onclick = function(){
 //Cowboy1 bulletbull attack function
 cowboy1BulletBull.onclick = function(){
 	if(bulletCounter == 0 && bullets == 0){
-		alert("You can't use bullet attacks anymore");
+		alert("Player 1 You can't use bullet attacks anymore");
 		bulletCounter++;
 	}
 	else{
@@ -217,7 +233,7 @@ function checkHealth2(){
 		if(counter2 == 0){
 			counter2++;
 			alert("Player 1 is dead");
-			xpBar2.setAttribute("value", xp += xpadd2);
+			xpBar2.setAttribute("value", xp2 += xpadd2);
 			initialize();
 		}
 		if(counter2 == 1 && xp == 100){
@@ -246,7 +262,7 @@ cowboy2Bullet.onclick = function(){
 }
 cowboy2SkyBullet.onclick = function(){
 	if(bulletCounter2 && bullets2 == 0){
-		alert("You have no bulllets left to attack anymore");
+		alert("Player 2 You have no bulllets left to attack anymore");
 		bulletCounter2++;
 	}
 	else{
@@ -258,7 +274,7 @@ cowboy2SkyBullet.onclick = function(){
 }
 cowboy2HugeBullet.onclick = function(){
 	if(bulletCounter2 == 0 && bullets2 == 0){
-		alert("You have no bulllets left to attack anymore");
+		alert("Player 2 You have no bulllets left to attack anymore");
 		bulletCounter2++;
 	}
 	else{
@@ -270,7 +286,7 @@ cowboy2HugeBullet.onclick = function(){
 }
 cowboy2SuperBulllet.onclick   = function(){
 	if(bulletCounter2 == 0 && bullets2 == 0){
-		alert("You have no bulllets left to attack anymore");
+		alert("Player 2 You have no bulllets left to attack anymore");
 		bulletCounter2++;
 	}
 	else{
