@@ -7,9 +7,12 @@ div#container{
 body{
   background-image: linear-gradient(to right, green, gold, green);
 }
-:link{
+a:link{
   color: white;
 }
-:active{
+a:visited{
+  color: white;
+}
+a:active{
   color: white;
 }
