@@ -112,13 +112,17 @@ cowboy2.onload = function(){
 	ctx.drawImage(cowboy2, 750, 162, 150, 150);
 }
 
-oDrawer.onclick = function(){
-		display.style.width = "200px";
-		display.style.opacity = 1;
+oFullScreen.onclick = function(){
+	if(document.documentElement.requestFullscreen)
+		document.documentElement.requestFullscreen();
+	else if(document.documentElement.mozRequestFullScreen)
+		document.documentElement.mozRequestFullScreen();
 }
-cDrawer.onclick = function(){
-		display.style.width = "0";
-		display.style.opacity = 0;
+cFullScreen.onclick = function(){
+	if(document.exitFullscreen)
+		document.exitFullscreen();
+	else if(document.mozCancelFullScreen)
+		document.mozCancelFullScreen();
 }
 oFullScreen.onclick = function(){
 	document.documentElement.requestFullscreen();
