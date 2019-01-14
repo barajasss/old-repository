@@ -1,6 +1,9 @@
 div#container{
-  background-color: red;
+  background-color: black;
   color: white;
   padding: 10px;
   outline: 1px solid black;
+}
+body{
+  background-image: linear-gradient(to right, green, gold, green);
 }
