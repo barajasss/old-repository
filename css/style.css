@@ -7,15 +7,15 @@ div#container{
 body{
   background-image: linear-gradient(to right, green, gold, green);
 }
-a{
+li a{
   color: white;
 }
-a:link{
+li a:link{
   color: white;
 }
-a:visited{
+li a:visited{
   color: white;
 }
-a:active{
+li a:active{
   color: white;
 }
