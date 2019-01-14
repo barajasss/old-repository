@@ -1,0 +1,137 @@
+/* only for screens less than 500px width */
+
+body{
+	background-color: orange;
+	text-align: center;
+}
+div#display{
+	text-align: left;
+	background-color: #333;
+	position: fixed;
+	top: 0px;
+	left: 0px;
+	padding: 10px;
+	height: 100%;
+	z-index: 1000;
+}
+div#display:hover{
+	background-color: none;
+}
+div#display:active{
+	background-color: none;
+}
+div#o-drawer{
+	position: fixed;
+	font-size: 50px;
+	line-height: 7px;
+ 	top: 9px;
+ 	right: 16px;
+ 	height: 27px;
+ 	width: 30px;
+	padding: 0px;
+	z-index: 5;
+}
+div#o-drawer:hover{
+	background-color: white;
+}
+div#o-drawer:active{
+	position: fixed;
+	font-size: 60px;
+	line-height: 8px;
+ 	top: 13px;
+ 	right: 16px;
+ 	height: 30px;
+	padding: 0px;
+}
+span.blinkon{
+	animation: none;
+}
+h1#heading{
+	margin: 3px;
+	color: blue;
+	animation: none;
+	transition: none;
+	font-size: 25px;
+}
+h1#heading:hover{
+	animation: none;
+	color: blue;
+}
+h1#heading:active{
+	animation: none;
+	color: blue;
+}
+progress.progress{
+	background-color: red;
+}
+canvas#canvas{
+	width: 100%;
+	border: 1px solid white;
+	margin: 2px;
+	background-color: transparent;
+	height: auto;
+}
+div#flex-container{
+	display: flex;
+	flex-wrap: wrap;
+}
+div.flex-item{
+	flex: 1 10%;
+	padding-left: 10px;
+	background-color: yellow;
+	font-size: 12px;
+}
+div#flex-container2{
+	display: flex;
+	flex-wrap: wrap;
+}
+div.flex-items2{
+	flex: 1 20%;
+	padding: 0px;
+}
+div.attacks-container{
+	background-color: purple;
+	color: gold;
+}
+div.attacks-container:hover{
+	background-color: purple;
+	color: gold;
+}
+div.attacks-container:active{
+	background-color: purple;
+	color: gold;
+}
+div.attacks-container2{
+	background-color: pink;
+	color: maroon;
+}
+div.attacks-container2:hover{
+	background-color: pink;
+	color: maroon;
+}
+div.attacks-container2:active{
+	background-color: pink;
+	color: maroon;
+}
+
+progress.progress{
+	height: 10px;
+}
+div.flex-item-1{
+	order: 1;
+}
+div.flex-item-2{
+	order: 2;
+}
+div.flex-item-3{
+	order: 3;
+}
+div.flex-item-4{
+	order: 4;
+}
+div.flex-item-5{
+	order: 5;
+}
+div.flex-item-6{
+	order: 6;
+}

@@ -1,0 +1,169 @@
+
+div#c-drawer{
+height: 80px;
+width: 50px;
+font-size: 50px;
+background-image: linear-gradient(to left, green, skyblue, green);
+color: black;
+cursor: pointer;
+border: 2px solid black;
+text-align: center;
+transition: 1s;
+opacity: 0.6;
+}
+div#c-drawer:hover{
+background-color: orange;
+color: orange;
+opacity: 0.5;
+}
+span.blinkon{
+-webkit-animation: getblink 0.8s infinite;
+}
+@-webkit-keyframes getblink{
+0%{
+opacity: 1;
+}
+50%{
+opacity: 0;
+}
+100%{
+opacity: 1;
+}
+}
+div.Full Screen{
+background-color: lightblue;
+}
+div#xp-bar-1{
+height: 30px;
+width: 25%;
+background-color: blue;
+border: 1px solid black;
+color: orange;
+display: inline;
+}
+div#xp-bar-2{
+height: 10%;
+display: inline;
+width: 10%;
+background-color: blue;
+color: orange;
+}
+h4{
+color: white;
+}
+h1#heading{
+	color: blue;
+	text-align: center;
+	transition: 0.8s;
+	animation: ccolor 7s infinite;
+	background-color: white;
+}
+@keyframes ccolor{
+	0%{
+		opacity: 0.7;
+		transition: 1s;
+		font-family: calibri;
+		color: black;
+	}
+	20%{
+		opacity: 0.4;
+		transition: 0.7s;
+		font-family: cambria;
+		color: green;	
+	}
+	50%{
+		opacity: 0.5;
+		transition: 1s;
+		font-family: arial;
+		color: red;
+	}
+	60%{
+		opacity: 0.8;
+		transition: 1s;
+		font-family: "jokerman";
+		color: blue;
+	}
+	70%{
+		opacity: 0.7;
+		transition: 1.4s;
+		font-family: "Oldman Book Style";
+		color: lightblue;		
+	}
+	90%{
+		opacity: 0.5;
+		transition: 1.3s;
+		color: lightgreen;
+		font-family: "Digifacewide";
+	}
+	100%{
+		opacity: 0.7;
+		transition: 1s;
+		color: black;
+		font-family: "Edwardian Script ITC";
+	}
+}
+h1#heading:hover{
+	color: lightblue;
+	animation: bounce 2.5s infinite;
+	transition: 1s;
+}
+@keyframes bounce{
+	0%{
+		opacity: 1;
+		color: green;
+		transform: translateY(0px);
+	}
+	50%{
+		opacity: 0;
+		color: transparent;
+		transform: translateY(-25px);
+	}
+	100%{
+		opacity: 1;
+		color: green;
+		transform: translateY(0px);
+	}
+}
+h1#heading:active{
+	color: orange;
+	transition: 1s;
+	animation: lrrl 3s infinite;
+	text-align: center;
+}
+@keyframes lrrl{
+	0%{
+		color: red;
+		transform: translateX(0);
+	}
+	20%{
+		color: blue;
+		transform: translateX(-25px);
+	}
+	40%{
+		color: orange;
+		transform: translateX(0);
+	}
+	50%{
+		color: maroon;
+		transform: translateX(50px);
+	}
+	60%{
+		color: lightblue;
+		transform: translateX(-30px);
+	}
+	80%{
+		color: lightpink;
+		transform: translateX(0);
+	}
+	90%{
+		color: lightgray;
+		transform: translateX(-45px);
+	}
+	100%{
+		color: red;
+		transform: translateX(0);
+	}
+}
+:fullscreen{
+	background-image: linear-gradient(to right, pink, lightblue, purple, green);
+}

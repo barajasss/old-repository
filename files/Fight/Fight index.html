@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>GunFight Index</title>
+    <style>
+      div{
+        background-color: maroon;
+      }
+    </style>
+  </head>
+  <body>
+    <div id = "menu">
+      <div id =  "page1link" class = "pagelink"><a href = "fight.html"></href></div>
+      <div id = "page2link" class = "pagelink"><a href = "fight shop.html"></href></div>
+      <div id = "page3link" class = "pagelink"><a href = "fight settings.html"></div>
+    </div>
+    <script>
+      var menu = document.getElementById("menu");
+      document.addEventListener("click", function(e){
+        var i = 0;        
+        var linkbtns = document.getElementsByClass("pagelink");
+        var element = e.target;
+        while(i>=linkbtns.length){
+          i++;
+          linkbtns[i].style.backgroundColor = "maroon";
+        }
+        element.style.backgroundColor = "gray";
+      },false);
+    </script>
+  </body>
+</html>
