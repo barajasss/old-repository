@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>
+		Cube Transform
+	</title>
+	<style>
+		body{
+			background-image: linear-gradient(to left, green, gold)
+		}
+		h1{
+			color: brown;
+			text-shadow: 2px 2px 2px white;
+		}
+		:root{
+			--len: 20vw;
+			--opacity: 0.7;
+		}
+		div#scene{
+			margin: 10px;
+			perspective: 1500px;
+			padding: 5%;
+			border: 10px groove white;
+			box-shadow: 3px 3px 4px #333;
+			background-image: radial-gradient(ellipse farthest-corner at 0% 100%, beige 50%, gold);
+		}
+		div#cube{
+			margin: 0 auto;
+			height: var(--len);
+			width: var(--len);
+			transform-style: preserve-3d;
+			position: relative;
+			transition: transform 0.4s linear 0s;
+		}
+		div.face{
+			height: inherit;
+			width: inherit;
+			font-size: 30px;
+			color: white;
+			line-height: var(--len);
+			text-align: center;
+			backface-visibility: visible;
+			position: absolute;
+			top: 0;
+			left: 0;
+		}
+		div.face:nth-child(1){
+			/*top*/
+			background-color: rgba(32, 53, 22, var(--opacity));
+			transform: rotateX(-90deg) translateZ(calc(var(--len)/2));
+		}
+		div.face:nth-child(2){
+			/*bottom*/
+			background-color: rgba(32, 153, 122, var(--opacity));
+			transform: rotateX(90deg) translateZ(calc(var(--len)/2));
+		}
+		div.face:nth-child(3){
+			/*right*/
+			background-color: rgba(132, 93, 22, var(--opacity));
+			transform: rotateY(90deg) translateZ(calc(var(--len)/2));
+		}
+		div.face:nth-child(4){
+			background-color: rgba(132, 153, 72, var(--opacity));
+			/*left*/
+			transform: rotateY(-90deg) translateZ(calc(var(--len)/2));
+		}
+		div.face:nth-child(5){
+			background-color: rgba(32, 53, 122, var(--opacity));
+			/*front*/
+			transform: rotateY(0deg) translateZ(calc(var(--len)/2));
+		}
+		div.face:nth-child(6){
+			background-color: rgba(42, 3, 22, var(--opacity));
+			/*backward*/
+			transform: rotateY(180deg) translateZ(calc(var(--len)/2));
+		}
+		input:hover, label:hover{
+			cursor: pointer;
+		}
+		input:checked + label{
+			color: white;
+			font-size: 30px;
+		}
+		input#one:checked ~ #scene #cube{
+			transform: rotateX(70deg) rotateY(0deg) rotateZ(10deg);
+		}
+		input#two:checked ~ #scene #cube{
+			transform: rotateX(70deg) rotateY(180deg) rotateZ(160deg);
+		}
+		input#three:checked ~ #scene #cube{
+			transform: rotateX(60deg) rotateY(270deg) rotateZ(90deg);
+		}
+		input#four:checked ~ #scene #cube{
+			transform: rotateX(250deg) rotateY(-270deg) rotateZ(100deg);
+		}
+		input#five:checked ~ #scene #cube{
+			transform: rotateX(-10deg) rotateY(350deg) rotateZ(360deg);
+		}
+		input#six:checked ~ #scene #cube{
+			transform: rotateX(160deg) rotateY(0deg) rotateZ(180deg);
+		}
+		@media screen and (max-width: 500px){
+			:root{
+				--len: 30vw;
+			}
+			div#scene{
+				padding: 15%;
+			}
+		}
+	</style>
+</head>
+<body onmouseover = "cursor();">
+	<h1 id="heading">Cube Transform</h1>
+
+
+	<input id="one" type="radio" name="number" checked>
+	<label for="one">One</label>
+	<input id="two" type="radio" name="number">
+	<label for="two">Two</label>
+	<input id="three" type="radio" name="number">
+	<label for="three">Three</label>
+	<input id="four" type="radio" name="number">
+	<label for="four">Four</label>
+	<input id="five" type="radio" name="number">
+	<label for="five">Five</label>
+	<input id="six" type="radio" name="number">
+	<label for="six">Six</label>
+
+
+	<div id="scene">
+		<div id="cube">
+			<div class="face">1</div>
+			<div class="face">2</div>
+			<div class="face">3</div>
+			<div class="face">4</div>
+			<div class="face">5</div>
+			<div class="face">6</div>
+		</div>
+	</div>
+
+	<br><br>
+<!--XYZ buttons
+
+	<button id="btnX">
+		Rotate X
+	</button>
+	<button id="btnY">
+		Rotate Y
+	</button>
+	<button id="btnZ">
+		Rotate Z
+	</button>
+	<script>
+		function _(element){
+			return document.getElementById(element);
+		}
+		var cube = _("cube");
+		var btnX = _("btnX");
+		var btnY = _("btnY");
+		var btnZ = _("btnZ");
+		var x = 0;
+		var y = 0;
+		var z = 0;
+		var value = 20;
+
+		btnX.addEventListener("click", rotateX, false);
+		btnY.addEventListener("click", rotateY, false);
+		btnZ.addEventListener("click", rotateZ, false);
+
+		function rotateX(){
+			x += value;
+			cube.style.transform = "rotateX("+x+"deg) rotateY("+y+"deg) rotateZ("+z+"deg)";
+		}
+		function rotateY(){
+			y += value;
+			cube.style.transform = "rotateX("+x+"deg) rotateY("+y+"deg) rotateZ("+z+"deg)";
+		}
+		function rotateZ(){
+			z += value;
+			cube.style.transform = "rotateX("+x+"deg) rotateY("+y+"deg) rotateZ("+z+"deg)";
+		}
+	</script>
+-->
+<script>
+	function cursor(){
+		document.style.cursor = "pointer";
+	}
+</script>
+</body>
+</html>
