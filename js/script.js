@@ -13,8 +13,7 @@ var value = 60;
 menuBtn.addEventListener("click", function(){
 	if(menuOpen == false){
 		menu.style.left = "0px";
-		dummy.style.height = "100vh";
-		dummy.style.width = "100vw";
+		dummy.style.display = "block"
 		menuOpen = true;
 	}
 }, false);
@@ -23,16 +22,11 @@ dummy.addEventListener("click", function(){
 	if(menuOpen == true){
 		menu.style.left = "-100%";
 		menuOpen = false;
-		dummy.style.height = "0vh";
-		dummy.style.width = "0vw";		
+		dummy.style.display = "none";	
 	}
 }, false);
 
-leftBtn.onclick = function(){
+setInterval(function(){
 	y += value;
 	carousel.setAttribute("style", "transform: rotateX(-15deg) rotateY("+y+"deg);");
-}
-rightBtn.onclick = function(){
-	y -= value;
-	carousel.setAttribute("style", "transform: rotateX(-15deg) rotateY("+y+"deg);");
-}
+}, 2000);
