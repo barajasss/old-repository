@@ -26,25 +26,25 @@ div#carousel div.items{
 }
 div#one{
 	transform: rotateY(0deg) translateZ(calc(var(--length)/0.52/2));
-	background-image: url("images/Andromeda Galaxy.png");
+	background-image: url("../images/Andromeda Galaxy.png");
 }
 div#two{
 	transform: rotateY(60deg) translateZ(calc(var(--length)/0.52/2));
-	background-image: url("images/Beauty Butterfly.png");
+	background-image: url("../images/Beauty Butterfly.png");
 }
 div#three{
 	transform: rotateY(120deg) translateZ(calc(var(--length)/0.52/2));
-	background-image: url("images/Hall.png");
+	background-image: url("../images/Hall.png");
 }
 div#four{
 	transform: rotateY(180deg) translateZ(calc(var(--length)/0.52/2));
-	background-image: url("images/Evening Time.png");
+	background-image: url("../images/Evening Time.png");
 }
 div#five{
 	transform: rotateY(240deg) translateZ(calc(var(--length)/0.52/2));
-	background-image: url("images/Doraemon.png");
+	background-image: url("../images/Doraemon.png");
 }
 div#six{
 	transform: rotateY(300deg) translateZ(calc(var(--length)/0.52/2));
-	background-image: url("images/Happy new year.png");
+	background-image: url("../images/Happy new year.png");
 }
