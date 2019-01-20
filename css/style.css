@@ -1,13 +1,19 @@
 body{
-	margin: 5px;
+	margin: 0px;
+	background-image: radial-gradient(ellipse farthest-corner at left bottom, yellow, green);
 }
 h1{
+	margin: 0;
+	padding: 5vh 10vh 10vh 10vh;
+	clip-path: polygon(0% 0%, 100% 0%, 100% 70%, 0% 100%);
+	background-color: navy;
 	color: white;
 }
 div#dummy{
-	height: 0;
-	width: 0;
+	height: 100%;
+	width: 100%;
 	opacity: 0.5;
+	display: none;
 	position: fixed;
 	left: 0;
 	top: 0;
@@ -15,7 +21,7 @@ div#dummy{
 	z-index: 10;
 }
 div#menu{
-	line-height: 1.5;
+	line-height: 2;
 	z-index: 11;
 	height: 100%;
 	width: auto;
@@ -27,38 +33,38 @@ div#menu{
     top: 0;
     left: -100%;
     box-sizing: border-box;
-    transition: all 0.5s ease-in;
+    transition: all 0.3s ease-in;
 }
 button#menu-btn{
+	margin: 10px;
 	display: inline;
-	height: 30px;
-	width: 40px;
+	height: 40px;
+	width: 50px;
 	border-radius: 5px;
 	position: relative;
 }
 button#menu-btn div{
 	height: 4px;
-	width: 20px;
+	width: 30px;
 	background-color: black;
 }
 button#menu-btn div:nth-child(1){
 	position: absolute;
-	top: 1px;
+	top: 3px;
 }
 button#menu-btn div:nth-child(2){
 	position: absolute;
-	top: 10px;
+	top: 14px;
 }
 button#menu-btn div:nth-child(3){
 	position: absolute;
-	top: 20px;
-}
-
-body{
-    background-image: linear-gradient(to right, green, gold, green);
+	top: 25px;
 }
 li a{
   color: white;
+}
+li a:hover{
+	color: orange !important;
 }
 li a:link{
   color: white;

@@ -1,9 +1,9 @@
 :root{
-	--length: 150px;
+	--length: 20vw;
 }
 div#scene{
-	margin-top: 100px;
-	perspective: 1000px;
+	margin-top: calc(var(--length)/4);
+	perspective: 920px;
 }
 div#carousel{
 	margin: 0 auto;
@@ -12,10 +12,10 @@ div#carousel{
 	position: relative;
 	transform-style: preserve-3d;
 	transform: rotateX(-15deg) rotateY(0deg);
-	transition: 1s;
+	transition: 0.8s;
 }
 div#carousel div.items{
-	height: 100%;
+	height: 70%;
 	width: 100%;
 	position: absolute;
 	top: 0;
@@ -23,28 +23,33 @@ div#carousel div.items{
 	background-color: rbga(0, 0, 0, 0.5);
 	background-size: cover;
 	border: 2px solid black;
+	background-color: white;
+	padding: 10px;
+}
+div.items img{
+	max-width: 100%;
+	height: 100%;
 }
 div#one{
-	transform: rotateY(0deg) translateZ(calc(var(--length)/0.52/2));
-	background-image: url("../images/Andromeda Galaxy.png");
+	transform: rotateY(0deg) translateZ(calc(var(--length)/0.42/2));a
 }
 div#two{
-	transform: rotateY(60deg) translateZ(calc(var(--length)/0.52/2));
-	background-image: url("../images/Beauty Butterfly.png");
+	transform: rotateY(60deg) translateZ(calc(var(--length)/0.42/2));
 }
 div#three{
-	transform: rotateY(120deg) translateZ(calc(var(--length)/0.52/2));
-	background-image: url("../images/Hall.png");
+	transform: rotateY(120deg) translateZ(calc(var(--length)/0.42/2));
 }
 div#four{
-	transform: rotateY(180deg) translateZ(calc(var(--length)/0.52/2));
-	background-image: url("../images/Evening Time.png");
+	transform: rotateY(180deg) translateZ(calc(var(--length)/0.42/2));
 }
 div#five{
-	transform: rotateY(240deg) translateZ(calc(var(--length)/0.52/2));
-	background-image: url("../images/Doraemon.png");
+	transform: rotateY(240deg) translateZ(calc(var(--length)/0.42/2));
 }
 div#six{
-	transform: rotateY(300deg) translateZ(calc(var(--length)/0.52/2));
-	background-image: url("../images/Happy new year.png");
+	transform: rotateY(300deg) translateZ(calc(var(--length)/0.42/2));
+}
+@media screen and (max-width: 500px){
+	:root{
+		--length: 30vw;
+	}
 }
