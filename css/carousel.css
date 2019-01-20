@@ -1,0 +1,50 @@
+:root{
+	--length: 150px;
+}
+div#scene{
+	margin-top: 100px;
+	perspective: 1000px;
+}
+div#carousel{
+	margin: 0 auto;
+	height: var(--length);
+	width: var(--length);
+	position: relative;
+	transform-style: preserve-3d;
+	transform: rotateX(-15deg) rotateY(0deg);
+	transition: 1s;
+}
+div#carousel div.items{
+	height: 100%;
+	width: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	background-color: rbga(0, 0, 0, 0.5);
+	background-size: cover;
+	border: 2px solid black;
+}
+div#one{
+	transform: rotateY(0deg) translateZ(calc(var(--length)/0.52/2));
+	background-image: url("../../../Computer 2/Sun folder/Suns drawing/Andromeda Galaxy.png");
+}
+div#two{
+	transform: rotateY(60deg) translateZ(calc(var(--length)/0.52/2));
+	background-image: url("../../../Computer 2/Sun folder/Suns drawing/Beauty Butterfly.png");
+}
+div#three{
+	transform: rotateY(120deg) translateZ(calc(var(--length)/0.52/2));
+	background-image: url("../../../Computer 2/Sun folder/Suns drawing/Hall.png");
+}
+div#four{
+	transform: rotateY(180deg) translateZ(calc(var(--length)/0.52/2));
+	background-image: url("../../../Computer 2/Sun folder/Suns drawing/Evening Time.png");
+}
+div#five{
+	transform: rotateY(240deg) translateZ(calc(var(--length)/0.52/2));
+	background-image: url("../../../Computer 2/Sun folder/Suns drawing/Doraemon.png");
+}
+div#six{
+	transform: rotateY(300deg) translateZ(calc(var(--length)/0.52/2));
+	background-image: url("../../../Computer 2/Sun folder/Suns drawing/Happy new year.png");
+}
