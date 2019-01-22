@@ -1,9 +1,12 @@
 :root{
-	--length: 20vw;
+	--length: 15vw;
 }
 div#scene{
-	margin-top: calc(var(--length)/4);
+	margin: calc(var(--length)/2);
 	perspective: 920px;
+	opacity: 0;
+	transform: scale(0.8, 0.8);
+	transition: 2s ease-in-out;
 }
 div#carousel{
 	margin: 0 auto;
@@ -12,7 +15,7 @@ div#carousel{
 	position: relative;
 	transform-style: preserve-3d;
 	transform: rotateX(-15deg) rotateY(0deg);
-	transition: 0.8s;
+	transition: 1s ease-in-out;
 }
 div#carousel div.items{
 	height: 70%;
@@ -22,9 +25,10 @@ div#carousel div.items{
 	left: 0;
 	background-color: rbga(0, 0, 0, 0.5);
 	background-size: cover;
-	border: 2px solid black;
+	border: 2px solid #333;
 	background-color: white;
 	padding: 10px;
+	filter: drop-shadow(2px 2px 2px white);
 }
 div.items img{
 	max-width: 100%;
@@ -50,6 +54,6 @@ div#six{
 }
 @media screen and (max-width: 500px){
 	:root{
-		--length: 30vw;
+		--length: 20vw;
 	}
 }
