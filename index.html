@@ -10,8 +10,18 @@
  <link href="css/carousel.css" type="text/css" rel="stylesheet"> 
 <body>
   <div id="dummy"></div>
-  <h1>Baraja Swargiary</h1>
+  <div id="title-container">
+    <h1 id="title">Baraja Swargiary</h1>
+  </div>
+
+  <div id="clearfix-top"></div>
   <button id="menu-btn">
+    <div></div>
+    <div></div>
+    <div></div>
+  </button>
+
+  <button id="menu-btn-hidden">
     <div></div>
     <div></div>
     <div></div>
@@ -29,40 +39,70 @@
       <li><a href="files/Fight/fight.html" target="_blank">Gun Fight By Sun Swargiary</li>
       <li><a href="files/multiplication table.html" target="_blank">Multiplication Table</li>
       <li><a href="files/cube.html" target="_blank">3D CUBE</a></li>
+      <li><a href="#" onclick="fullscreen();">Fullscreen Mode</a></li>
     </ul>
   </div>
 <br><br>
 
-  <div id="scene">
-    <div id="carousel">
-      <div id="one" class="items">
-        <img src="images/Andromeda Galaxy.png">
-      </div>
-      <div id="two" class="items">       
-        <img src="images/Beauty butterfly.png">
-      </div>
-      <div id="three" class="items">
-        <img src="images/Hall.png">
-      </div>
-      <div id="four" class="items">
-        <img src="images/Doraemon.png">
-      </div>
-      <div id="five" class="items">
-        <img src="images/Evening time.png">
-      </div>
-      <div id="six" class="items">
-        <img src="images/Happy new year.png">
-      </div>
-    </div>
+<div id="flex-container">
+
+  <div id="flex-item-1" class="flex-items">
   </div>
 
-  <br><br><br>
-  <main>
-    I am Baraja Swargiary. I live in Guwahati, Assam, India.
-    <br>I study at Cotton University
-    <br>Computer Science.
-  </main>
+  <div id="flex-item-2" class="flex-items">
+    <div id="scene">
+      <div id="carousel">
+        <div id="one" class="items">
+          <img src="images/Andromeda Galaxy.png">
+        </div>
+        <div id="two" class="items">       
+          <img src="images/Beauty butterfly.png">
+        </div>
+        <div id="three" class="items">
+          <img src="images/Hall.png">
+        </div>
+        <div id="four" class="items">
+          <img src="images/Doraemon.png">
+        </div>
+        <div id="five" class="items">
+          <img src="images/Evening time.png">
+        </div>
+        <div id="six" class="items">
+          <img src="images/Happy new year.png">
+        </div>
+      </div>
+    </div>
+    </div>
+
+</div><!--flexbox container-->
+
+<div id="flex-container-2">
+  <div id="panel-1" class="panel flex-items-2">
+    <div class="heading">
+      HTML 5
+    </div>
+    Latest HTML version with lots of new features
+  </div>
+  <div id="panel-2" class="panel flex-items-2">
+    <div class="heading">
+      CSS 3
+    </div>
+    Latest CSS version with many cool design options incuding grids and flexboxes for layout.
+  </div>
+  <div id="panel-3" class="panel flex-items-2">
+    <div class="heading">
+      ES6
+    </div>
+    Latest JavaScript specification.
+  </div>
+</div>
+
+<div id="top-btn">Top</div>
+<footer>
+  <h2>&copy; Baraja 2019</h2>
+</footer>
 
   <script src="js/script.js"></script>
+  <script src="js/text animation.js"></script>
 </body>
 </html>
