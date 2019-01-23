@@ -1,0 +1,16 @@
+{
+	"short_name": "baraja",
+	"name": "Baraja Swargiary Github",
+	"icons": [
+		{
+			"src": "icon.png",
+			"type": "image/png",
+			"sizes": "500x500"
+		}
+	],
+	"start_url": "https://barajasss.github.io/",
+	"background-color": "green",
+	"display": "standalone",
+	"theme-color": "green",
+	"scope": "/"
+}
