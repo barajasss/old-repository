@@ -9,8 +9,8 @@
 		}
 	],
 	"start_url": "https://barajasss.github.io/",
-	"background-color": "green",
-	"display": "standalone",
-	"theme-color": "green",
+	"background_color": "green",
+	"display": "fullscreen",
+	"theme_color": "green",
 	"scope": "/"
 }
