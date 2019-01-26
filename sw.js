@@ -6,7 +6,7 @@ var cacheAssets = [
 	"/js/script.js",
 	"/js/text animation.js"
 ];
-self.addEventListener("install", function(){
+self.addEventListener("install", function(e){
 	console.log("service worker installed");
 	e.waitUntil(
 		caches
