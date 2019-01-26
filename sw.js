@@ -7,10 +7,15 @@ var cacheAssets = [
 	"/js/text animation.js"
 ];
 self.addEventListener("install", function(){
-	self.skipWaiting();
-	caches
-		.open(cacheName)
-		.then(function(response){
-			caches.addAll(cacheAssets);
-		});
+	console.log("service worker installed");
+	e.waitUntil(
+		caches
+			.open(cacheName)
+			.then(function(cache){
+				cache.addAll(cacheAssets);
+			})
+			.then(function(){
+				return self.skipWaiting();
+			})
+	);
 }, false);
