@@ -4,7 +4,9 @@ var cacheAssets = [
 	"/css/carousel.css",
 	"/css/style.css",
 	"/js/script.js",
-	"/js/text animation.js"
+	"/js/text animation.js",
+	"files/cube.html",
+	"files/multiplication table.html"
 ];
 self.addEventListener("install", function(e){
 	console.log("service worker installed");
@@ -34,3 +36,11 @@ self.addEventListener("activate", function(e){
 			})
 	);
 }, false);
+
+self.addEventListener("fetch", e=>{
+	console.log("service worker fetched");
+	e.respondWith(
+		fetch(e.request)
+			.catch(() => caches.match(e.request))
+	);
+});
