@@ -122,16 +122,18 @@
   				console.log(err)  			
   		);
   	}
-  	document.addEventListener("beforeinstallprompt", (e)=>{
+  	window.addEventListener("load", (e)=>{
   		e.preventDefault();
   		deferredEvent = e;
   		showPrompt();
   	}, false);
+
   	function showPrompt(){
-  		document.getElementById("prompt").style.display = "block";
+  		document.getElementById("prompt").style.bottom = "0";
   	}
   	document.getElementById("addBtn").addEventListener("click", function(){
   		deferredEvent.prompt();
+  		document.getElementById("prompt").style.bottom = "-100%";
   	}, false);
   </script>
 </body>
