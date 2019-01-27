@@ -103,4 +103,4 @@ function closeMenu(){
 	}
 }
 
-window.onload = function(){ alert("window onload"); }
+window.onscroll = function(){ alert("window onload"); }
