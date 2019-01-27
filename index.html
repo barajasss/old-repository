@@ -122,8 +122,7 @@
   				console.log(err)  			
   		);
   	}
-  	document.addEventListener("keydown", (e)=>{
-		alert("beforeinstallprompt");
+  	window.addEventListener("load", (e)=>{
   		e.preventDefault();
   		deferredEvent = e;
   		showPrompt();
@@ -133,13 +132,8 @@
   		document.getElementById("prompt").style.bottom = "0";
   	}
   	document.getElementById("addBtn").addEventListener("click", function(){
-  		document.getElementById("prompt").style.bottom = "-100%";
   		deferredEvent.prompt();
-		deferredEvent.userChoice
-			.then((choiceResult) => {
-				choiceResult.outcome;
-				deferredEvent = null;
-			}
+  		document.getElementById("prompt").style.bottom = "-100%";
   	}, false);
   </script>
 </body>
