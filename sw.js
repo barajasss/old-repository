@@ -1,4 +1,4 @@
-var cacheName = "baraja";
+var cacheName = "barajasss caches";
 var cacheAssets = [
 	"https://barajasss.github.io/index.html",
 	"https://barajasss.github.io/manifest.json",
