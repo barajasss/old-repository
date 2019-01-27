@@ -1,14 +1,14 @@
 var cacheName = "baraja";
 var cacheAssets = [
 	"https://barajasss.github.io/index.html",
-	"https://barajasss.github.io//manifest.json",
-	"https://barajasss.github.io//sw.js",
-	"https://barajasss.github.io//css/carousel.css",
-	"https://barajasss.github.io//css/style.css",
-	"https://barajasss.github.io//js/script.js",
-	"https://barajasss.github.io//js/text animation.js",
-	"https://barajasss.github.io//files/cube.html",
-	"https://barajasss.github.io//files/multiplication table.html"
+	"https://barajasss.github.io/manifest.json",
+	"https://barajasss.github.io/sw.js",
+	"https://barajasss.github.io/css/carousel.css",
+	"https://barajasss.github.io/css/style.css",
+	"https://barajasss.github.io/js/script.js",
+	"https://barajasss.github.io/js/text animation.js",
+	"https://barajasss.github.io/files/cube.html",
+	"https://barajasss.github.io/files/multiplication table.html"
 ];
 self.addEventListener("install", function(e){
 	console.log("service worker installed");
