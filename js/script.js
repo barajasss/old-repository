@@ -103,4 +103,3 @@ function closeMenu(){
 	}
 }
 
-window.onscroll = function(){ alert("window onload"); }
