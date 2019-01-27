@@ -204,7 +204,20 @@ footer{
 	clip-path: ellipse(100% 50% at 50% 60%);
 }
 div#prompt{
-	display: none;
+	position: fixed;
+	bottom: -100%;
+	left: 0;
+	width: 100vw;
+	height: 20vh;
+	background-color: maroon;
+	transition: all 1s linear;
+	border: 1px solid white;
+}
+#addBtn{
+	padding: 10px;
+	position: absolute;
+	right: 50px;
+	bottom: 20px;
 }
 
 
