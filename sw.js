@@ -40,6 +40,14 @@ self.addEventListener("activate", function(e){
 }, false);
 
 self.addEventListener("fetch", e=>{
-	console.log("service worker fetched");
-	e.respondWith( fetch(e.request).catch(() => caches.match(e.request)) );
+	console.log("service worker fetched: e.request: ", e.request);
+	e.respondWith( 
+		caches.match(e.request)
+			.then(function(response) {
+				if(response) {
+					return response;
+				}
+				return fetch(e.request);
+			})
+	);
 });
