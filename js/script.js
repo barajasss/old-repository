@@ -102,3 +102,5 @@ function closeMenu(){
 		dummy.style.display = "none";	
 	}
 }
+
+window.onload = function(){ alert("window onload"); }
