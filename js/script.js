@@ -102,4 +102,3 @@ function closeMenu(){
 		dummy.style.display = "none";	
 	}
 }
-
