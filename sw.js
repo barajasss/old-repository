@@ -1,12 +1,14 @@
 var cacheName = "baraja";
 var cacheAssets = [
 	"/index.html",
+	"/manifest.json",
+	"sw.js",
 	"/css/carousel.css",
 	"/css/style.css",
 	"/js/script.js",
 	"/js/text animation.js",
-	"files/cube.html",
-	"files/multiplication table.html"
+	"/files/cube.html",
+	"/files/multiplication table.html"
 ];
 self.addEventListener("install", function(e){
 	console.log("service worker installed");

@@ -104,6 +104,9 @@
   <h2>&copy; Baraja 2019</h2>
 </footer>
 
+<div id="prompt">
+	<button id="addBtn">Add To HomeScreen</button>
+</div>
   <script src="js/script.js"></script>
   <script src="js/text animation.js"></script>
   <script>
@@ -118,8 +121,18 @@
   			.catch(err => 
   				console.log(err)  			
   		);
-
   	}
+  	document.addEventListener("beforeinstallprompt", (e)=>{
+  		e.preventDefault();
+  		deferredEvent = e;
+  		showPrompt();
+  	}, false);
+  	function showPrompt(){
+  		document.getElementById("prompt").style.display = "block";
+  	}
+  	document.getElementById("addBtn").addEventListener("click", function(){
+  		deferredEvent.prompt();
+  	}, false);
   </script>
 </body>
 </html>
