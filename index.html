@@ -123,6 +123,7 @@
   		);
   	}
   	window.addEventListener("beforeinstallprompt", (e)=>{
+		alert("beforeinstallprompt");
   		e.preventDefault();
   		deferredEvent = e;
   		showPrompt();
@@ -132,8 +133,13 @@
   		document.getElementById("prompt").style.bottom = "0";
   	}
   	document.getElementById("addBtn").addEventListener("click", function(){
-  		deferredEvent.prompt();
   		document.getElementById("prompt").style.bottom = "-100%";
+  		deferredEvent.prompt();
+		deferredEvent.userChoice
+			.then((choiceResult) => {
+				choiceResult.outcome;
+				deferredEvent = null;
+			}
   	}, false);
   </script>
 </body>
