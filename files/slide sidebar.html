@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+	<html>
+	<head>
+		<title>Slide Sidebar</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+		<style>
+			button#menu-btn{
+				position: fixed;
+				right: 10px;
+				padding: 10px;
+			}
+			div#menu{
+				position: fixed;
+				top: 0;
+				left: -300px;
+				width: 300px;
+				height: 100vh;
+				color: white;
+				background-color: olive;
+			}
+		</style>
+	</head>
+	<body>
+		<button id="menu-btn">Open Menu</button>
+		<div id="menu">
+			<ul>
+				<li>Java</li>
+				<li>C++</li>
+				<li>JavaScript</li>
+				<li>Python</li>
+			</ul>
+		</div>
+		<div id="display"></div>
+	</body>
+	<script>
+		var menuBtn = document.getElementById("menu-btn");
+		var menu = document.getElementById("menu");
+		var shouldOpenMenu = true;
+		var display = document.getElementById("display");
+
+		menuBtn.addEventListener("click", function(){
+			if(shouldOpenMenu == true){
+				menu.style.left = "0px";
+				menuBtn.innerHTML = "Close Menu";
+				menu.style.transition = "0.5s";
+				shouldOpenMenu = false;
+			}
+			else{
+				menu.style.left = "-300px";
+				menuBtn.innerHTML = "Open Menu";
+				menu.style.transition = "0.5s";
+				shouldOpenMenu = true;
+			}
+		}, false);
+
+
+		var mousedown = false;
+		var offsetX = 300;
+		var delX=0;
+		var x;
+		var increasing = false;
+		var shouldSwipe = false;
+
+
+		document.addEventListener("mousedown", function(e){
+			e.preventDefault();
+			mousedown = true;
+			menu.style.transition = "none";
+			if( e.pageX < 30 && !shouldOpenMenu){
+				shouldSwipe = true;
+			}
+			else if(shouldOpenMenu && e.pageX > 300 && e.pageX <350){
+				shouldSwipe = true;
+			}
+			else{
+				shouldSwipe = false;
+			}
+		}, false);
+		document.addEventListener("mousemove", function(e){
+			e.preventDefault();
+			if(mousedown && shouldSwipe){
+				x = e.pageX - offsetX;
+				display.innerHTML = `${x} and increasing: ${increasing}`;
+
+				if(x>delX){
+					increasing = true;
+				}
+				else{
+					increasing = false;
+				}
+
+				if(x<0){
+					menu.style.left = `${x}px`;
+				}
+				delX = x;
+			}
+		}, false);
+		document.addEventListener("mouseup", function(){
+			mousedown = false;
+			if(increasing ){
+				menu.style.transition = "0.5s";
+				menu.style.left = "0px";
+				shouldOpenMenu = true;
+				menuBtn.innerHTML = "Close Menu";
+			}
+			else if(!increasing ){
+				menu.style.transition = "0.5s";
+				menu.style.left = "-300px";
+				shouldOpenMenu = false;
+				menuBtn.innerHTML = "Open Menu";
+			}
+		})
+
+
+
+
+
+
+
+		//for touches
+
+
+		document.addEventListener("touchstart", function(e){
+			e.preventDefault();
+			mousedown = true;
+			menu.style.transition = "none";
+			if( e.touches[0].pageX < 30 && !shouldOpenMenu){
+				shouldSwipe = true;
+			}
+			else if(shouldOpenMenu && e.touches[0].pageX > 300 && e.touches[0].pageX <350){
+				shouldSwipe = true;
+			}
+			else{
+				shouldSwipe = false;
+			}
+		}, false);
+		document.addEventListener("touchmove", function(e){
+			e.preventDefault();
+			if(mousedown && shouldSwipe){
+				x = e.touches[0].pageX - offsetX;
+				display.innerHTML = `${x} and increasing: ${increasing}`;
+
+				if(x>delX){
+					increasing = true;
+				}
+				else{
+					increasing = false;
+				}
+
+				if(x<0){
+					menu.style.left = `${x}px`;
+				}
+				delX = x;
+			}
+		}, false);
+		document.addEventListener("touchend", function(){
+			mousedown = false;
+			if(increasing ){
+				menu.style.transition = "0.5s";
+				menu.style.left = "0px";
+				shouldOpenMenu = true;
+				menuBtn.innerHTML = "Close Menu";
+			}
+			else if(!increasing ){
+				menu.style.transition = "0.5s";
+				menu.style.left = "-300px";
+				shouldOpenMenu = false;
+				menuBtn.innerHTML = "Open Menu";
+			}
+		})
+	</script>
+</html>
+
+
+
+
+
+
+
+
+
+
