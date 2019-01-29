@@ -24,6 +24,7 @@ var targetY, currentY;
 var interval;
 
 function moveToHome(e){
+	mousedown = false;
 	updateBtn(homeBtn);
 	targetY = homeElement.offsetTop-50;
 	interval = setInterval(function(){
@@ -31,6 +32,7 @@ function moveToHome(e){
 	}, scrollSpeed);
 }
 function moveToSkills(e){
+	mousedown = false;
 	updateBtn(skillsBtn);
 	targetY = skillsElement.offsetTop-20;
 	interval = setInterval(function(){
@@ -38,6 +40,7 @@ function moveToSkills(e){
 	}, scrollSpeed);
 }
 function moveToProjects(e){
+	mousedown = false;
 	updateBtn(projectsBtn);
 	targetY = projectsElement.offsetTop-40;
 	interval = setInterval(function(){
@@ -45,6 +48,7 @@ function moveToProjects(e){
 	}, scrollSpeed);
 }
 function moveToContact(e){
+	mousedown = false;
 	updateBtn(contactBtn);
 	targetY = contactElement.offsetTop-350;
 	interval = setInterval(function(){
@@ -81,3 +85,34 @@ function scrollTo(tY){
 		clearInterval(interval);
 	}
 }
+
+var mousedown = false;
+document.addEventListener("mousedown", function(){
+	mousedown = true;
+}, false);
+window.addEventListener("scroll", function(){
+	if(mousedown){
+		var y = window.scrollY;
+		if(y > contactElement.offsetTop-350){
+			console.log("scroll contact btn");
+			updateBtn(contactBtn);
+		}
+		else if(y > projectsElement.offsetTop-50){
+			console.log("scroll projects btn");
+			updateBtn(projectsBtn);
+		}
+		else if(y > skillsElement.offsetTop-40){
+			console.log("scroll skills btn");
+			updateBtn(skillsBtn);
+		}
+		else if(y > homeElement.offsetTop-10){
+			console.log("scroll home btn");
+			updateBtn(homeBtn);
+		}
+	}
+}, false);
+
+
+
+
+
