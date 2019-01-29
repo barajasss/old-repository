@@ -90,6 +90,9 @@ var mousedown = false;
 document.addEventListener("mousedown", function(){
 	mousedown = true;
 }, false);
+document.addEventListener("touchmove", function(){
+	mousedown = true;
+}, false);
 window.addEventListener("scroll", function(){
 	if(mousedown){
 		var y = window.scrollY;
