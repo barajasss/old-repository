@@ -1,0 +1,35 @@
+div#skills{
+	color: white;
+	display: flex;
+	flex-flow: row wrap;
+	padding: 10px;
+	background-color: #3a8;
+}
+div#skills > *{
+	flex: 1 250px;
+	padding: 10px;
+	line-height: 1.4;
+}
+div#skills div.logo{
+	float: left;
+	margin-right: 10px;
+	margin-top: 5px;
+	width: 60px;
+	height: 60px;
+	background-color: white;
+	/* this page is imported in style.css that is why the url should be for style.css */
+	background-image: url("../files/skills/images/logo sprite.jpg");
+	background-size: cover;
+}
+div#skills >:nth-child(1){
+	flex: 1 1000px;
+}
+div#html5-logo{
+	background-position: 3px 2px;
+}
+div#css3-logo{
+	background-position: -57px 0px;
+}
+div#js-logo{
+	background-position: -117px 0px;
+}

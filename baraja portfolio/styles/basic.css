@@ -1,0 +1,57 @@
+:root{
+	--theme1: purple;
+	--primary: green;
+	--secondary: lightgreen;
+	--active: white;
+	--dark: #333;
+	--light: beige;
+}
+body{
+	margin: 0;
+	padding: 0;
+}
+div#home{
+	display: flex;
+	flex-wrap: wrap;
+	align-items: stretch;
+	justify-content: space-evenly;
+	margin: 0;
+	padding: 10px;
+	background-color: var(--dark);
+	color: white;
+}
+div#hero{
+	margin: 0 auto;
+	padding: 10%;
+	padding-top: 5%;
+	padding-bottom: 0;
+}
+div#hero h1{
+	font-family: "georgia", sans-serif;
+	font-size: 2.2rem;
+}
+div#home p:first-letter{
+	font-size: 60px;
+	float: left;
+	line-height: 1;
+	margin-right: 10px;
+	margin-top: -10px;
+	margin-bottom: -10px;
+}
+div#home p{
+	line-height: 1.5;
+}
+div#home *{
+	flex: 1 300px;
+}
+
+div#home div#hero button{
+	border-radius: 5px;
+	padding: 10px;
+	border: 0px solid white;
+	transition: 0.5s;
+}
+div#hero button:hover{
+	background-color: orange;
+	cursor: pointer;
+}

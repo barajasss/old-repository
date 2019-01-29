@@ -1,0 +1,25 @@
+div#contact{
+	color: #aaa;
+	background-color: #112;
+	margin: 0;
+	display: flex;
+	flex-flow: row wrap;
+	padding: 10px;
+}
+div#contact *{
+	text-align: left;
+	flex: 1 200px;
+	margin: 15px;
+	margin-left: 0;
+}
+div#contact >:nth-child(1){
+	flex: 1 1000px;
+}
+@media screen and (max-width: 500px){
+	div#contact >:nth-child(1){
+		flex: 1 1000px;
+		padding: 10px 0;
+		color: white;
+		margin: 0;
+	}
+}

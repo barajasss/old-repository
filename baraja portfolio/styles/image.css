@@ -1,0 +1,35 @@
+/*
+
+	The main profile image.
+
+*/
+figure#profile-img{
+	width: 300px;
+	height: auto;
+	text-align: center;
+	position: relative;
+	overflow: hidden;
+	border-radius: 15px;
+}
+figure#profile-img img{
+	width: 100%;
+	height: auto;
+	border-radius: 15px;
+	border: 6px double white;
+	box-sizing: border-box;
+}
+figure#profile-img figcaption{
+	position: absolute;
+	bottom: -50%;
+	background-color: rgba(20, 0, 0, 0.8);
+	width: 100%;
+	box-sizing: border-box;
+	padding: 30px;
+	transition: 0.5s ease;
+}
+figure#profile-img:hover figcaption{
+	bottom: 0%;
+}
+figure#profile-img{
+	cursor: pointer;
+}

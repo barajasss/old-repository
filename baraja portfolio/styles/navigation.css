@@ -1,0 +1,45 @@
+/* dummy div to make up the height in place of navigation which has a fixed position */
+div#dummy{
+	height: 50px;
+}
+
+nav{
+	position: fixed;
+	left: 0;
+	top: 0;
+	z-index: 10;
+	width: 100%;
+	margin: 0;
+	height: 50px;
+	overflow: hidden;
+}
+nav ul{
+	height: 100%;
+	width: 100%;
+	margin: 0;
+	padding: 0;
+	background-color: var(--primary);
+	list-style-type: none;
+	display: flex;
+	flex-flow: row nowrap;
+	justify-content: space-evenly;
+}
+nav ul li{
+	height: 100%;
+	flex: 1 200px;
+	text-align: center;
+	box-sizing: border-box;
+	padding-top: 15px;
+	color: white;
+	transition: 0.2s;
+	border-bottom: 2px solid white;
+}
+nav ul li.active{
+	border-bottom: 2px solid white;
+	background-color: var(--secondary);
+	color: var(--dark);
+}
+nav ul li:hover{
+	border-bottom: 2px solid #333;
+	cursor: pointer;
+}

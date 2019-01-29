@@ -1,0 +1,31 @@
+div#projects{
+	display: flex;
+	flex-flow: row wrap;
+	background: #37a;
+	padding: 10px;
+	color: white;
+}
+div#projects *{
+	flex: 1 300px;
+}
+div#projects >:nth-child(1){
+	flex: 1 1000px;
+}
+div#projects img{
+	width: 98%;
+	height: auto;
+	padding: 5px;
+}
+figure.projects{
+	border-radius: 0 0 10px 10px;
+	border: 5px groove white;
+	overflow: hidden;
+	box-sizing: border-box;
+}
+figure.projects figcaption{
+	background-color: rgba(0, 0, 0, 0.5);
+	padding: 10px;
+	margin-top: -5px;
+	box-sizing: border-box;
+	background-color: black
+}
