@@ -1,4 +1,5 @@
 /* dummy div to make up the height in place of navigation which has a fixed position */
+
 div#dummy{
 	height: 50px;
 }
@@ -42,4 +43,16 @@ nav ul li.active{
 nav ul li:hover{
 	border-bottom: 2px solid #333;
 	cursor: pointer;
+}
+
+button#top-btn{
+	position: fixed;
+	bottom: 10px;
+	right: 10px;
+	padding: 10px;
+	border-radius: 5px;
+	border: none;
+	opacity: 0;
+	visibility: hidden;
+	transition: 0.3s;
 }
