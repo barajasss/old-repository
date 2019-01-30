@@ -22,9 +22,7 @@ div#home{
 }
 div#hero{
 	margin: 0 auto;
-	padding: 10%;
-	padding-top: 5%;
-	padding-bottom: 0;
+	padding: 0% 10%;
 }
 div#hero h1{
 	font-family: "georgia", sans-serif;
