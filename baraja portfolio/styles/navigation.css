@@ -35,17 +35,23 @@ nav ul li{
 	transition: 0.2s;
 	border-bottom: 2px solid white;
 }
-nav ul li.active{
-	border-bottom: 2px solid white;
-	background-color: var(--secondary);
-	color: var(--dark);
-}
 nav ul li:hover{
 	border-bottom: 2px solid #333;
 	cursor: pointer;
 }
 
+nav ul li.active{
+	border-bottom: 2px solid #333 !important;
+	background-color: var(--secondary);
+	color: var(--dark);
+}
+
+
+
 button#top-btn{
+	font-size: 20px;
+	height: 40px;
+	width: 40px;
 	position: fixed;
 	bottom: 10px;
 	right: 10px;

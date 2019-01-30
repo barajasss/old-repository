@@ -28,7 +28,20 @@ div#hero{
 }
 div#hero h1{
 	font-family: "georgia", sans-serif;
-	font-size: 2.2rem;
+	font-size: 2.5rem;
+	background-image: linear-gradient(to right,  violet, indigo, skyblue, green, #aa3, orange, red, violet, indigo, skyblue, green, #aa3, orange, red, violet, indigo, skyblue, green, #aa3, orange, red, violet, indigo, skyblue, green, #aa3, orange, red);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	background-size: 1600% 600%;
+	animation: fire 50s infinite;
+}
+@keyframes fire{
+	0%, 100%{
+		background-position: 0% 50%;
+	}
+	50%{
+		background-position: 100% 50%;
+	}
 }
 div#home p:first-letter{
 	font-size: 60px;
