@@ -68,6 +68,7 @@ function updateBtn(elem){
 	clearInterval(interval);
 	for(var i in buttons){
 		buttons[i].setAttribute("class", "nav-btn");
+		buttons[i].style.borderBottom = "2px solid white";
 	};
 	elem.setAttribute("class", "active");
 }
@@ -112,7 +113,7 @@ window.addEventListener("scroll", function(){
 
 	//control the visibility of top button
 	if(window.scrollY > 500){
-		topBtn.style.opacity = 0.8;
+		topBtn.style.opacity = 0.6;
 		topBtn.style.visibility = "visible";
 	}
 	else{
@@ -154,13 +155,11 @@ topBtn.addEventListener("click", function(){
 		var y = window.scrollY;
 		i++;
 		if(y > 10){
-			console.log("top btn runngin", i);
-			y -= scrollAmount;
+			y -= scrollAmount+10;
 			window.scroll(0, y);
 		}
 		else{
-			console.log("cleared");
 			clearInterval(interval2);
 		}
-	}, 10);
+	}, 5);
 }, false);
