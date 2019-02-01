@@ -1,0 +1,346 @@
+:root{
+	--primary: #38a;
+	--secondary: #4a8;
+	--light: #eee;
+	--dark: #333;
+}
+html{
+	font-size: 16px;
+	scroll-behavior: smooth;
+}
+*{
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+body{
+	padding: 0 4em;
+	background-image: radial-gradient(ellipse farthest-corner at center center, red, green, yellow);
+	background-image: url("https://in.yamaha.com/en/files/pianos_1200x480_54840936d7b605bcfdabed2c0b63f91b.jpg");
+	background-attachment: fixed;
+	background-size: cover;
+	color: white;
+}
+div#dummy{
+	height: 120px;
+}
+nav {
+  background-color: var(--primary);
+  color: var(--light);
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  padding: 10px;
+  display: flex;
+  flex-flow: row wrap;
+}
+nav div {
+	width: ;
+	border-radius: 5px;
+	flex: 1;
+	padding: 10px;
+	text-align: center;
+}
+
+nav ul {
+  background-color: var(--secondary);
+  list-style-type: none;
+  border-radius: 5px;
+  margin-left: 10px;
+  display: flex;
+  flex: 3;
+  flex-flow: row wrap;
+  box-sizing: border-box;
+}
+nav ul li {
+  text-align: center;
+  flex: 1 100px;
+  padding: 10px;
+  line-height: 25px;
+}
+nav ul li:hover {
+	color: #0ea;
+	cursor: pointer;
+}
+form {
+	text-align: center;
+}
+
+h1#header{
+	font-size: 2rem;
+	text-align: center;
+	margin-bottom: 1rem;
+	color: white;
+	text-shadow: 2px 2px 2px #222;
+}
+
+form input#email {
+	margin: 10px;
+	height: 30px;
+	width: 250px;
+	border-radius: 0.1rem;
+	border: 1px solid #999;
+	padding: 1rem;
+}
+form input#email:hover {
+	background-color: lightyellow;
+}
+form input#email:focus {
+	background-color: lightyellow;
+}
+form input#submit {
+	background-color: blue;
+	color: white;
+	border: none;
+	font-size: 16px;
+	border-radius: 0.1rem;
+	padding: 0.5rem;
+	transition: 0.4s;
+}
+form input#submit:hover{
+	background-color: #3af;
+	cursor: pointer;
+}
+#video{
+	margin: 10px auto;
+	display: block;
+}
+
+
+
+/* CARD */
+
+div#scene{
+	perspective: 600px;
+	height: 50px;
+	width: 50px;
+	padding: 0;
+}
+div#card{
+	height: 100%;
+	width: 100%;
+	transform-style: preserve-3d;
+	position: relative;
+	transition: 1s;
+}
+div.face{
+	height: 100%;
+	width: 100%;
+	backface-visibility: hidden;
+	position: absolute;
+	top: 0;
+	left: 0;
+	line-height: 25px;
+}
+div#front{
+	background-color:black;
+	transform: rotateY(0deg);
+}
+div#back{
+	background-color: #333;
+	transform: rotateY(-180deg);
+}
+div#card:hover{
+	transform: rotateY(180deg);
+	cursor: pointer;
+}
+
+
+
+
+
+div#features{
+	display: flex;
+	flex-flow: row wrap;
+	color: #232;
+}
+div#features > *{
+	display: flex;
+	flex-flow: row wrap;
+	margin: 10px 0;
+	border: 1px solid white;
+	border-radius: 12px;
+	overflow: hidden;
+}
+div#features >* img{
+	width: 150px;
+	height: auto;
+	flex: 1 150px;
+}
+div#features >* div.features-wrapper {
+	flex: 5 200px;
+	display: flex;
+	flex-flow: row wrap;
+}
+
+div#features >* div.features-wrapper > *{
+	background-color: #eec;
+	margin: 10px;
+	flex: 1 1000px;
+}
+div#features >* div.features-wrapper h3{
+	background-color: darkorange;
+	padding: 8px;
+	margin: 0;
+	width: 100%;
+	color: #ffa;
+	text-align: center;
+}
+div#features >* div.features-wrapper p{
+	padding: 20px 10px;
+	margin: 0;
+	align-self: stretch;
+}
+
+footer{
+	background-color: white;
+	color: #333;
+	padding: 30px;
+	border-radius: 5px 5px 0 0;
+}
+footer button{
+	background-color: orange;
+	border-radius: 1px;
+	border: none;
+	padding: 5px 20px;
+	margin-top: 10px;
+}
+footer button:hover{
+	cursor: pointer;
+	background-color: darkorange;
+}
+
+
+div#products{
+	display: flex;
+	flex-flow: row wrap;
+}
+div#products >*{
+	flex: 1 200px;
+	background-color: rgba(0, 0, 0, 0.59);
+	padding: 10px;
+	margin: 10px;
+	border: 2px solid white;
+	text-align: center;
+}
+div#products p{
+	margin: 10px 0;
+}
+div#products li{
+	margin-left: 30px;
+	text-align: left;
+}
+
+div#products button{
+	padding: 10px;
+	border-radius: 5px;
+	border: none;
+	transition: background-color 0.15s linear;
+	color: white;
+}
+div#products button:nth-of-type(1){
+	background-color: rgba(100, 120, 255, 0.7);
+}
+div#products button:nth-of-type(2){
+	background-color: rgba(80, 180, 225, 0.7);
+}
+div#products button:nth-of-type(1):hover{
+	cursor: pointer;
+	background-color: rgba(100, 120, 255, 1);
+}
+div#products button:nth-of-type(2):hover{
+	cursor: pointer;
+	background-color: rgba(80, 180, 225, 1);
+}
+
+
+
+
+
+
+
+/* Media Queries */
+
+
+@media screen and (max-width: 500px){
+	body{
+		padding: 0 2em;
+	}
+	h1#header{
+		font-size: 1.6rem;
+	}
+	div#dummy{
+		height: 170px;
+	}
+	nav div, nav ul{
+		margin-left: 0px;
+		margin-top: 10px;
+		flex: 1 1000px;
+	}
+	nav div div{
+		margin-top: 0px;
+	}
+	form input#email{
+		width: 90%;
+	}
+	form input#submit{
+		width: 90%;
+	}
+	#video{
+		width: 300px;
+		height: 180px;
+		height: ;
+		margin: 10px auto;
+		display: block;
+	}
+
+	div#features div.features-wrapper*{
+		flex: 1 200px;
+	}
+	div#features >* img{
+		width: 250px;
+		height: auto;
+		flex: 1 1000px;
+	}
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+div#features-div{
+	height: 80px;
+}
+div#products-div{
+	height: 80px;
+}
+div#contacts-div{
+	height: 40px;
+}
+div.display{
+	margin: 10px;
+	transition: 0.5s;
+	height: 0;
+	overflow: hidden;
+	text-align: left;
+}
