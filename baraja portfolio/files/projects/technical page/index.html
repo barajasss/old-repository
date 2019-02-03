@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Technical Page</title>
+	<link href="style.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+	<div id="dummy">.</div>
+	<nav id="menu">
+		<button id="menu-btn">
+			Menu
+		</button>
+		<h1>Contents</h1>
+		<ul>
+			<li id="introduction-btn" class="active option">Introduction</li>
+			<li id="box-model-btn" class="option">Box Model</li>
+			<li id="dimensions-btn" class="option">Dimensions</li>
+			<li id="margin-and-padding-btn" class="option">Margin and Padding</li>
+			<li id="colors-btn" class="option">Colors</li>
+			<li id="typography-btn" class="option">Typography</li>
+			<li id="css-3-btn" class="option">CSS3</li>
+			<li id="flexboxes-btn" class="option">Flexboxes</li>
+			<li id="grids-btn" class="option">Grids</li>
+		</ul>
+	</nav>
+	<div id="content">
+		<h1>Welcome To CSS Course</h1>
+		<div id="introduction">
+			<h1>Introduction</h1>
+			<p>
+				CSS is a language of design. We use this to design our web pages efficiently. It has various rules and selectors to apply styling. CSS has evolved within the years and it is used with every web pages to style them.
+				<br>Here is an example code snippet of css
+				<br><br>
+				<code>     
+					div#title{
+						<br>&nbsp;&nbsp;&nbsp;&nbsp;font-size: 20px;
+						<br>&nbsp;&nbsp;&nbsp;&nbsp;opacity: 0.8;
+					<br>}
+				</code>
+			</p>
+		</div>
+		<div id="box-model">
+			<h1>Box model</h1>
+			<p>
+				In CSS, we can treat every HTML element as boxes and style them accordingly and this is what CSS does. Whenever we add borders and background colors, we see that every element is surrounded by a rectangular box and all the styling happens within the box.
+			</p>
+		</div>
+		<div id="dimensions">
+			<h1>Dimensions</h1>
+			<p>
+				To measure and decide how long or tall an element should be, we use height and width properties. We have different dimension units in CSS like px, cm, in, em, rem, % etc.
+			</p>
+		</div>
+		<div id="margin-and-padding">
+			<h1>Margin and padding</h1>
+			<p>
+				Margin defines the space an element should have outside the box, while padding defines the space between the border of the element and the content of the box.
+			</p>
+		</div>
+		<div id="colors">
+			<h1>Colors</h1>
+			<p>
+				Colors are what gives life to designing. In CSS, we can give colors to text using the <code>color</code> property and background can be set using the <code>background-color</code> property.
+			</p>
+		</div>
+		<div id="typography">
+			<h1>Typography</h1>
+			<p>
+				Typography is all about text and its style and decorations. To control typography we have different properties:
+				<code>
+					<ul>
+						<li>text-decoration</li>
+						<li>color</li>
+						<li>font-weight</li>
+						<li>font-family</li>
+						<li>font-size</li>
+					</ul>
+				</code>
+			</p>
+		</div>
+		<div id="css-3">
+			<h1>CSS 3</h1>
+			<p>
+				CSS 3 is newly launched feature of CSS with lots of new features. We have <code>border-radius, transform, transition, flexbox, grid and animation.</code> It has become very interesting and intuitive to design and develop in CSS nowadays. CSS 3 has so many other new features that now you can almost do image clipping and filtering of images in the CSS itself. You can also use sprites and background-position them so that we can see different images with a single HTTP request.
+			</p>
+		</div>
+		<div id="flexboxes">
+			<h1>Flexboxes</h1>
+			<p>
+				Flex boxes stand for flexible boxes and is a one dimensional layout system in CSS. It can be used very ingenously for making beautiful websites. With flexboxes we can easily center a content and adjust some of the things which were not possible and developers had to use hacks like using floats. It is a responsive design system and it can be scaled well. We have many properties like: 
+				<code>
+					<ul>
+						<li>display: flex</li>
+						<li>flex-flow</li>
+						<li>flex:</li>
+						<li>align-items</li>
+						<li>justify-content</li>
+					</ul>
+				</code>
+			</p>
+		</div>
+		<div id="grids">
+			<h1>Grids</h1>
+			<p>
+				Grid is a powerful layout system in CSS. It is a 2 dimensional grid system. Grids can be made responsive using media queries and it is a new feature. It is gaining popularity because it is a part of core technology and not a framework. Grids give us a feature to easily to make columns and rows and is a new way to build layout in contrast to 12-column grid systems used by libraries and frameworks.
+				<code>
+					<ul>
+						For Parent Element(grid-container)<br>
+						<li>display: grid</li>
+						<li>grid-template-columns</li>
+						<li>grid-template-rows</li>
+						<li>grid-template-areas</li>
+						<li>justify-content</li>
+						<li>align-content</li>
+						<li>align-items</li>
+						<li>justify-items</li><br>
+						For Child Element(grid items)<br>
+						<li>grid-coloumn</li>
+						<li>grid-row</li>
+						<li>grid-area</li>
+						<li>grid-column-gap</li>
+						<li>grid-row-gap</li>
+						<li>align-self</li>
+						<li>justify-self</li>
+					</ul>
+				</code>
+			</p>
+		</div>
+	</div>
+	<p id="credits">
+		&copy; Credits: Baraja Swargiary
+	</p>
+	<script type="text/javascript" src="script.js"></script>
+</body>
+</html>

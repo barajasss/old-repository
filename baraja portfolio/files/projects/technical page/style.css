@@ -1,0 +1,161 @@
+html{
+	margin: 0;
+	padding: 0;
+	font-size: 10px;
+	box-sizing: border-box;
+	scroll-behavior: smooth;
+	overflow-x: hidden;
+}
+div#dummy{
+	float: left;
+	width: 270px;
+	height: 100%;
+}
+nav{
+	background-color: #ccc;
+	position: fixed;
+	height: 100%;
+	width: 250px;
+	top: 0;
+	left: 0;
+	font-size: 1.6rem;
+	line-height: 2rem;
+	overflow: hidden;
+	overflow-y: scroll;
+	z-index: 15;
+}
+nav h1{
+	text-align: center;
+	color: #333;
+}
+nav ul{
+	background-color: transparent;
+	list-style-type: none;
+	padding: 0;
+}
+nav ul li{
+	width: 100%;
+	margin: 0;
+	padding: 11px;
+	color: #222;
+}
+nav ul li:hover{
+	background-color: #6cf;
+	color: white;
+	cursor: pointer;
+}
+nav ul li.active{
+	background-color: #48f;
+	color: white;
+}
+nav button#menu-btn{
+	display: none;
+	float: left;
+	padding: 6px 10px;
+	position: fixed;
+	top: 13px;
+	left: 13px;
+	font-size: 1.6rem;
+	border-radius: 5px;
+	border: 1px solid white;
+}
+nav button#menu-btn:hover{
+	cursor: pointer;
+}
+
+
+div#content{
+	width: 60.1%;
+	float: left;
+	padding: 10px;
+	box-sizing: border-box;
+	font-size: 25px;
+	color: #444;
+}
+div#content h1{
+	font-size: 1em;
+	color: #333;
+}
+div#content > h1{
+	font-size: 1.3em;
+	color: #222;
+}
+div#content p{
+	line-height: 1.6;
+	width: 100%;
+	font-size: 0.7em;
+	word-wrap: break-word;
+}
+div#content ul{
+	font-size: 0.8em;
+}
+p#credits{
+	float: left;
+	position: relative;
+	bottom: 0;
+	right: 0px;
+	padding-left: 300px;
+	margin: 0 -10px;
+	height: 70px;
+	width: 100vw;
+	background-color: #444;
+	color: #fff;
+	font-size: 2rem;
+	line-height: 70px;
+}
+
+
+
+
+
+
+@media screen and (max-width: 700px){
+	nav{
+		width: 200px;
+	}
+	div#dummy{
+		width: 220px;
+	}
+	div#content{
+		width: 53%;
+		padding: 5px;
+	}
+	p#credits{
+		padding-left: 230px;
+	}
+}
+
+
+@media screen and (max-width: 500px){
+	div#dummy{
+		float: none;
+		display: block;
+		height: 50px;
+		width: 250px;
+	}
+	nav{
+		background-color: #bbb;
+		width: 100%;
+		height: 60px;
+		margin-bottom: 0;
+		overflow: hidden;
+		transition: 0.5s;
+	}
+	nav button#menu-btn{
+		display: block;
+	}
+	nav ul{
+		margin-bottom: 0;
+	}
+	nav ul li{
+		line-height: 10px;
+	}
+	div#content{
+		font-size: 23px;
+		width: 100%;
+	}
+	p#credits{
+		text-align: center;
+		padding: 0px;
+	}
+}
