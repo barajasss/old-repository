@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Code Editor</title>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+        <style>
+            :root{
+                --height: 300px;
+            }
+            html{
+                font-size: 16px;
+            }
+            textarea{
+                width: 100%;
+                height: var(--height);
+                background: rgb(31, 4, 4);
+                color: white;
+                text-align: left;
+                resize: none;
+                display: block;
+                padding: 1rem;
+                font-size: 1rem;
+                font-family: monospace;
+                box-sizing: border-box !important;
+            }
+            div#output{
+                height: var(--height);
+                max-width: 100%;
+                font-size: 1rem;
+                padding: 1rem;
+                box-sizing: border-box !important;
+            }
+            div#flex-container{
+                display: flex;
+                flex-flow: row wrap;
+            }
+            div.flex-items{
+                flex: 1 300px;
+                border: 1px solid blue;
+                word-wrap: break-word;
+            }
+            @media screen and (min-width: 500px){
+                div#output{
+                    max-width: 50%;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <h3>Veenu Live Text Editor</h3>
+            <h6>Integrated with materialize-css</h6>
+            <button class="btn waves-effect" onclick="refresh();">Reset</button>
+            <br><br>
+            <div id="flex-container">
+                <div class="flex-items">
+                    <textarea id="editor"></textarea>
+                </div>
+                <div class="flex-items" id="output">
+
+                </div>
+            </div>
+        </div>
+		    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+        <script>
+            M.AutoInit();
+            var editor = document.getElementById("editor");
+            var output = document.getElementById("output");
+            var show = true;
+            editor.focus();
+            editor.oninput = function(){
+                var test = editor.value[editor.value.length-1];
+                if(test == '<'){
+                    show = false;
+                }
+                if(test == '>'){
+                    show = true;
+                }
+                if(show){
+                    output.innerHTML = editor.value;
+                    M.AutoInit();
+                }
+            }
+            function refresh(){
+                output.innerHTML = editor.value ="";
+                M.AutoInit();
+            }
+        </script>
+    </body>
+</html>
