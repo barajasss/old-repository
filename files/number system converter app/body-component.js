@@ -1,33 +1,32 @@
 
 Vue.component('body-component', {
-	props: ['numberSystems', 'input1', 'input2'],
+	props: ['numberSystems', 'input1', 'input2', 'numberSystemPosition1', 'numberSystemPosition2'],
 	template: `
 		<div>
 			<input-component 
+				input-position = 'first'
+				:number-system-position = "numberSystemPosition1"
 				:number-systems="numberSystems"
 				:input="input1"
 				placeholder="Enter value 1"
 				@update-input="$emit('update-input-2', { input: 'one', data: $event })"
-				@update-number-system="$emit('update-number-system-2', { system: 'one', data: $event })"
+				@update-number-system="$emit('update-number-system-2', { inputPosition: 'first', dir: $event })"
 			></input-component>
 			<input-component 
+				input-position = 'second'
+				:number-system-position = "numberSystemPosition2"
 				:number-systems="numberSystems"
 				:input="input2"
 				placeholder="Enter value 2"
 				@update-input="$emit('update-input-2', { input: 'two', data: $event })"
-				@update-number-system="$emit('update-number-system-2', { system: 'two', data: $event })"
+				@update-number-system="$emit('update-number-system-2', { inputPosition: 'second', dir: $event })"
 			></input-component>
 		</div>
 	`
 });
 //child of body-component which is in turn child of the root vue instance of converter-app
 Vue.component('input-component', {
-	data: function(){
-		return {
-			numberSystemPosition: 0
-		}
-	},
-	props: ['numberSystems', 'input', 'placeholder'],
+	props: ['inputPosition', 'numberSystems', 'input', 'placeholder', 'numberSystemPosition'],
 	template: `
 		<div class="card-panel blue" style="padding: 10px 0px 0px 0px">
 			<div class="row" style="margin: 0px">
@@ -35,7 +34,7 @@ Vue.component('input-component', {
 					class="col push-s1 offset-m1 offset-l1 s2 m2 l2 btn orange waves-effect waves-light"
 					@click="updateNumberSystem('prev')"
 				>
-					Prev
+					<i class="material-icons large">chevron_left</i>
 				</button>
 				<div 
 					id="number-system-display" 
@@ -47,7 +46,7 @@ Vue.component('input-component', {
 					class="offset-s2 offset-m1 offset-l1 col pull-s1 s2 m2 l2 btn orange waves-effect waves-light"
 					@click="updateNumberSystem('next')"
 				>
-					Next
+					<i class="material-icons large">chevron_right</i>
 				</button>
 			</div>
 			<div class="row">
@@ -63,21 +62,7 @@ Vue.component('input-component', {
 	`,
 	methods: {
 		updateNumberSystem: function(dir){
-			if(dir == 'prev'){
-				if(this.numberSystemPosition>0){
-					this.numberSystemPosition--;
-				} else{
-					this.numberSystemPosition = this.numberSystems.length-1;
-				}
-			}
-			else if(dir == 'next'){
-				if(this.numberSystemPosition < this.numberSystems.length-1){
-					this.numberSystemPosition++;
-				} else{
-					this.numberSystemPosition = 0;
-				}
-			}
-			this.$emit('update-number-system', this.numberSystems[this.numberSystemPosition]);
+			this.$emit('update-number-system', dir);
 		}
 	}
 });

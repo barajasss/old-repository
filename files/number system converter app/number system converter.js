@@ -4,9 +4,11 @@ new Vue({
 	data: {
 		input1: '',
 		input2: '',
-		system1: 'binary',
+		system1: 'decimal',
 		system2: 'binary',
-		numberSystems: ['binary', 'decimal', 'octal', 'hexadecimal'],
+		numberSystems: ['binary', 'octal', 'decimal', 'hexadecimal'],
+		numberSystemPosition1: '2',
+		numberSystemPosition2: '0'
 	},
 	methods: {
 		updateInput: function(e){
@@ -20,13 +22,65 @@ new Vue({
 			}
 		},
 		updateNumberSystem: function(e){
-			switch(e.system){
-				case "one": this.system1 = e.data;
-							this.input1 = this.input2 = '';
-							break;
-				case "two": this.system2 = e.data;
-							this.input1 = this.input2 = '';
-							break;
+			switch(e.inputPosition){
+				case "first": 	if(e.dir == 'prev'){
+									this.movePrev1();
+									if(this.numberSystemPosition1 == this.numberSystemPosition2)
+										this.movePrev1();
+								}
+								else if(e.dir == 'next'){
+									this.moveNext1();
+									if(this.numberSystemPosition1 == this.numberSystemPosition2)
+										this.moveNext1();
+								}
+								this.system1 = this.numberSystems[this.numberSystemPosition1];
+								this.input1 = this.input2 = '';
+								break;
+				case "second": 	if(e.dir == 'prev'){
+									this.movePrev2();
+									if(this.numberSystemPosition1 == this.numberSystemPosition2)
+										this.movePrev2();
+								}
+								else if(e.dir == 'next'){
+									this.moveNext2();
+									if(this.numberSystemPosition1 == this.numberSystemPosition2)
+										this.moveNext2();
+								}
+								this.system2 = this.numberSystems[this.numberSystemPosition2];
+								this.input1 = this.input2 = '';
+								break;
+			}
+		},
+		movePrev1: function(){
+			if(this.numberSystemPosition1 > 0 ){
+				this.numberSystemPosition1--;
+			}
+			else{
+				this.numberSystemPosition1 = this.numberSystems.length-1;
+			}
+		},
+		moveNext1: function(){
+			if(this.numberSystemPosition1 < this.numberSystems.length-1){
+				this.numberSystemPosition1++;
+			}
+			else{
+				this.numberSystemPosition1 = 0;
+			}
+		},
+		movePrev2: function(){
+			if(this.numberSystemPosition2 > 0 ){
+				this.numberSystemPosition2--;
+			}
+			else{
+				this.numberSystemPosition2 = this.numberSystems.length-1;
+			}
+		},
+		moveNext2: function(){
+			if(this.numberSystemPosition2 < this.numberSystems.length-1){
+				this.numberSystemPosition2++;
+			}
+			else{
+				this.numberSystemPosition2 = 0;
 			}
 		},
 		input2FromInput1: function(val){
@@ -494,3 +548,5 @@ function hexadecimalToDecimal(val){
 	}
 	return dec;
 } 
+
+
