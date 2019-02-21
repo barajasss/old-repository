@@ -9,7 +9,7 @@
 	<style>
 		body{
 			text-align: center;
-			background-color: lightgreen;
+			background-color: orange;
 		}
 		canvas{
 			border: 2px solid white;
@@ -76,7 +76,7 @@
 	</style>
 </head>
 <body>
-	<h1>Mini Runner</h1>
+	<h1>Mini Runner Mobile</h1>
 	<div id="container">
 		<h2 id="help">Controls: Tap or click to jump...</h2>
 		<canvas id="canvas" width="500px" height="450px">
@@ -120,12 +120,12 @@
 			createPole(50, 100)
 		];
 		var character = {
-			x: 50,
+			x: 85,
 			y: canvas.height-(45+groundOffset),
 			width: 30,
 			height: 45,
 			color: 'red',
-			jump: 230,
+			jump: 250,
 			score: 0, 
 			dead: false,
 			onGround: true
@@ -136,8 +136,8 @@
 			cY: 0,
 			cWidth: 100,
 			cHeight: 150,
-			width: character.width+20,
-			height: character.height+20
+			width: character.width+30,
+			height: character.height+30
 		}
 		var characterImage = new Image();
 		characterImage.src = 'character.png';
@@ -169,12 +169,12 @@
 				createPole(50, 100)
 			];
 			character = {
-				x: 50,
+				x: 85,
 				y: canvas.height-(45+groundOffset),
 				width: 30,
 				height: 45,
 				color: 'red',
-				jump: 230,
+				jump: 250,
 				score: 0, 
 				dead: false,
 				onGround: true
@@ -185,8 +185,8 @@
 				cY: 0,
 				cWidth: 100,
 				cHeight: 150,
-				width: character.width+20,
-				height: character.height+20
+				width: character.width+30,
+				height: character.height+30
 			}
 		}
 
@@ -204,7 +204,7 @@
 			}
 			*/
 			for(var i=0; i<poles.length; i++){
-				ctx.drawImage(poleImage, poles[i].x, pole.y-poles[i].height, pole.width+20, poles[i].height);
+				ctx.drawImage(poleImage, poles[i].x, pole.y-poles[i].height-10, pole.width+30, poles[i].height+10);
 				poles[i].x -= pole.speed;
 			}
 
@@ -268,7 +268,7 @@
 				cIO.cWidth, 
 				cIO.cHeight, 
 				character.x, 
-				character.y-13, 
+				character.y-23, 
 				cIO.width, 
 				cIO.height
 			);
