@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Zappy Car</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+	<meta name="description" content="Simple car game made in JavaScript By Baraja Swargiary.">
+	<style>
+		body{
+			background-color: orange;
+			text-align: center;
+			color: white;
+		}
+		canvas{
+			background-image: url("background.png");
+			border: 1px solid black;
+		}
+		button#start{
+			height: 60px;
+			width: auto;
+			padding: 5px;
+			background-color: teal;
+			border-radius: 10px;
+			color: white;
+		}
+	</style>
+</head>
+<body>
+	<h2>Zappy Car</h2>
+	<button id="start">Start game</button>
+	<canvas id="canvas" height="400px" width="400px">
+	</canvas>
+	<script>
+		var start = document.getElementById("start");
+		var canvas = document.getElementById('canvas');
+		var ctx = canvas.getContext('2d');
+		
+		const playerImage = new Image();
+		playerImage.src = "player.png";
+		const enemyImage = new Image();
+		enemyImage.src = "enemy.png";
+
+		const music = new Audio();
+		music.src = "mario.mp3";
+		music.loop = true;
+
+		start.onclick = function() {
+			init();
+			music.play();
+		}
+		function game(){
+			draw();
+			if(car.speed < 2)
+				car.speed += 0.00005;
+			updateScore();
+			if(checkCollision(player)){
+				clearInterval(interval);
+				return;
+			}
+		}
+		function init(){
+			timer=3;
+		    interval = setInterval(game, timer);
+			player = {
+				x: canvas.width/2,
+				y: canvas.height-100,
+				speed: 20,
+				dead: false,
+				score: 0
+			}
+			car = {
+				height: 80,
+				width: 80,
+				speed: 0.5
+			}
+			dir = [ 100, 220 ];
+			cars = [ createCar() ];
+			whites = [ createWhites() ]
+		}
+		function draw(){
+			ctx.clearRect(0, 0, canvas.width, canvas.height);
+			drawWhites();
+			ctx.fillStyle = "black";
+			ctx.font = "20px arial";
+			ctx.fillText("Score: "+player.score, 2, 30);
+			ctx.fillStyle="green";
+			ctx.drawImage(playerImage, player.x, player.y, car.width, car.height);
+			ctx.fillStyle="maroon";
+			for(var i=0; i<cars.length; i++){
+				ctx.drawImage(
+					enemyImage,
+					cars[i].x,
+					cars[i].y,
+					car.width, 
+					car.height
+				);
+				cars[i].y += car.speed;
+			}
+			if(cars[cars.length-1].y > canvas.height-150){
+				cars.push(createCar());
+			}
+			if(cars[0].y > canvas.height){
+				cars.shift();
+			}
+		}
+		function updateScore(){
+			if(cars[0].y >= canvas.height-0.8){
+				player.score++;
+			}
+		}
+		function createCar(){
+			var rand = Math.floor(Math.random()*2);
+			return {
+				x: dir[rand],
+				y: -150
+			};
+		}
+		function drawWhites(){
+			ctx.fillStyle = "white";
+			for(var i=0; i<whites.length; i++){
+				ctx.fillRect(whites[i].x, whites[i].y, 10, 100);
+				whites[i].y += 0.5;
+			}
+			if(whites[whites.length-1].y > canvas.height){
+				whites.push(createWhites());
+				whites.shift();
+			}
+		}
+		function createWhites(x=190, y=-100){
+			return {
+				x: x,
+				y: y
+			}
+		}
+		function checkCollision(playerTemp, snap=false){
+			for(var i=0; i<cars.length; i++){
+				con1 = playerTemp.y <= cars[i].y+car.height ;
+				con2 = playerTemp.y+car.height >= cars[i].y;
+				con3 = playerTemp.x <=cars[i].x+car.width;
+				con4 = playerTemp.x+car.width >= cars[i].x;
+				if(con1 && con2 && con3 && con4){
+					if(snap != false){
+						if(snap == 'left')
+							player.x = cars[i].x+car.width;
+						else if(snap == 'right')
+							player.x = cars[i].x-car.width;
+						else if(snap == 'up')
+							player.y = cars[i].y+car.height;
+						else if(snap == 'down')
+							player.y = cars[i].y-car.height+2;
+					}
+					return true;
+				}
+			}
+		}
+
+		//event listeners controls
+		document.addEventListener("keydown", function(e){
+			e.preventDefault();
+			if(e.key == 'ArrowLeft'){
+				if(player.x > 100){
+					if(!checkCollision({ x: player.x-player.speed, y: player.y }, 'left'))
+						player.x -= player.speed;
+				}
+			}
+			else if(e.key == 'ArrowRight'){
+				if(player.x < canvas.width-car.width-100){
+					if(!checkCollision({ x: player.x+player.speed, y: player.y }, 'right'))
+						player.x += player.speed;
+				}
+			}
+			else if(e.key == 'ArrowUp'){
+				if(player.y > 20){
+					if(!checkCollision({ x: player.x, y: player.y-player.speed }, 'up'))
+						player.y -= player.speed;
+				}
+			}
+			else if(e.key == 'ArrowDown'){
+				if(player.y < canvas.height-car.height-20){
+					if(!checkCollision({ x: player.x, y: player.y+player.speed }, 'down'))
+						player.y += player.speed;
+				}
+			}
+		}, false);
+
+	</script>
+</body>
+</html>
