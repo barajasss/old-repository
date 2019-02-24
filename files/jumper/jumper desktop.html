@@ -85,6 +85,10 @@
 		<button id="restartBtn">Restart Game</button>
 	</div>
 	<script>
+		const backgroundMusic = new Audio();
+		backgroundMusic.src = "mario.mp3";
+		backgroundMusic.loop = true;
+
 		var highscore=0;
 		var startBtn = document.getElementById("startBtn");
 		var restartBtn = document.getElementById("restartBtn");
@@ -97,11 +101,13 @@
 		}
 		startBtn.addEventListener("click", function(){
 			game();
+			backgroundMusic.play();
 			startBtn.style.transform = "translate(-50%, 450%)";
 			help.style.transform = "translate(0%, -450%)";
 		}, false);
 		restartBtn.addEventListener("click", function(){
 			restartBtn.style.display = "none";
+			backgroundMusic.play();
 			init();
 			game();
 		}, false);
@@ -153,6 +159,8 @@
 			updateScore();
 			if(character.dead){
 				gameOver();
+				backgroundMusic.pause();
+				backgroundMusic.currentTime = 0;
 				return;
 			}
 			requestAnimationFrame(game);
