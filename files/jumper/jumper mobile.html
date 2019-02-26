@@ -3,6 +3,25 @@
 <html>
 <head>
 	<title>Jumper</title>
+
+	<script src="https://www.gstatic.com/firebasejs/5.8.4/firebase.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/5.8.4/firebase-app.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/5.8.4/firebase-database.js"></script>
+	<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyBNYaR3WmGbCj404iOKatIvpFmHTXe7u_c",
+    authDomain: "mini-runner.firebaseapp.com",
+    databaseURL: "https://mini-runner.firebaseio.com",
+    projectId: "mini-runner",
+    storageBucket: "mini-runner.appspot.com",
+    messagingSenderId: "229978897253"
+  };
+  firebase.initializeApp(config);
+</script>
+
+
+
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 	<link href="manifest.json" rel="manifest">
 	<meta name="theme-color" content="orange">
@@ -94,21 +113,33 @@
 		backgroundMusic.src = "mario.mp3";
 		backgroundMusic.loop = true;
 
-		var highscore=0;
 		var startBtn = document.getElementById("startBtn");
 		var restartBtn = document.getElementById("restartBtn");
 		var help = document.getElementById("help");
-		if(!localStorage.getItem("highscore")){
-			localStorage.setItem("highscore", 0);
+
+		var database = firebase.database().ref('highscore');
+		var highscore;
+		
+		database.on('value', function(snapshot){
+			highscore = snapshot.val();
+			console.log(highscore);
+		})
+		
+
+		function updateScore(){
+			var condition1 = character.x > poles[0].x+pole.width; 
+			var condition2 = poles[0].x+pole.width > character.x-4;
+			var condition3 = character.dead == false;
+			if( condition1 && condition2 && condition3){
+				character.score++;
+			}
 		}
-		else{
-			highscore = localStorage.getItem("highscore");
-		}
+
 		startBtn.addEventListener("click", function(){
 			game();
 			backgroundMusic.play();
-			startBtn.style.transform = "translate(-50%, 500%)";
-			help.style.transform = "translate(0%, -500%)";
+			startBtn.style.transform = "translate(-50%, 800%)";
+			help.style.transform = "translate(0%, -800%)";
 		}, false);
 		restartBtn.addEventListener("click", function(){
 			restartBtn.style.display = "none";
@@ -260,19 +291,6 @@
 			else{
 			}
 		}
-		function updateScore(){
-			var condition1 = character.x > poles[0].x+pole.width; 
-			var condition2 = poles[0].x+pole.width > character.x-4;
-			var condition3 = character.dead == false;
-
-			if( condition1 && condition2 && condition3){
-				character.score++;
-				if(character.score > highscore){
-					highscore = character.score;
-					localStorage.setItem("highscore", highscore);
-				}
-			}
-		}
 		function drawCharacter(){
 			ctx.drawImage(
 				characterImage, 
@@ -299,11 +317,18 @@
 			}
 		}
 		function gameOver(){
+			if(character.score > highscore.score){
+				highscore.name = prompt("You made highscore!! Enter your name: ");
+				highscore.score = character.score;
+				database.set(highscore);
+			}
 			restartBtn.style.display = "inline";
 			ctx.fillStyle = "#333";
 			ctx.font = "26px arial";
 			ctx.fillText("Your score is "+character.score, 165, 74);
-			ctx.fillText("Highscore: "+highscore, 180, 100);
+			ctx.fillText("Highscore: "+highscore.score, 180, 100);
+			ctx.fillText(" by ", 250, 130);
+			ctx.fillText(highscore.name, 180, 160);
 		}
 		document.addEventListener("keydown",  function(e){
 			jump();
