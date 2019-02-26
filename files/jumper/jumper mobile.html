@@ -106,7 +106,7 @@
 		</canvas>
 		<button id="startBtn">Start Game</button>
 		<button id="restartBtn">Restart Game</button>
-		<p>Made By Baraja Swargiary from Cotton University 2nd Sem CSIT, 2019.</p>
+		<p id="display">Made By Baraja Swargiary from Cotton University 2nd Sem CSIT, 2019.</p>
 	</div>
 	<script>
 		const backgroundMusic = new Audio();
@@ -115,11 +115,20 @@
 
 		var startBtn = document.getElementById("startBtn");
 		var restartBtn = document.getElementById("restartBtn");
+		var display = document.getElementById("display");
 		var help = document.getElementById("help");
 
 		var database = firebase.database().ref('highscore');
+		var visitors = firebase.database().ref('visitors');
+		var visits;
 		var highscore;
 		
+		visitors.once('value', function(snapshot){
+			visits = snapshot.val();
+			visits++;
+			visitors.set(visits);
+			display.innerHTML += '<br>Number of visitors: ' + visits;
+		})
 		database.on('value', function(snapshot){
 			highscore = snapshot.val();
 			console.log(highscore);
