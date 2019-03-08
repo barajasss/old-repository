@@ -158,6 +158,10 @@
 	</div>
 	<div id="visitsDisplay"></div>
 	<script>
+		var facts = [];
+		fetch('http://localhost/facts/facts.txt')
+		.then(res=>console.log(res));
+
 		var number = document.getElementById("input");
 		var output = document.getElementById("output");
 		var database = firebase.database().ref('comments');
@@ -212,13 +216,12 @@
 			counter++;
 			var num = document.getElementById("input").value;
 			if(num.length>0){
-				output.innerHTML = "Loading...";
-				fetch('http://numbersapi.com/'+num)
-					.then(res => res.text())
-					.then(data => {
-						output.innerHTML = data;
-					})
-					.catch(err => console.log(err));
+				if(num>=0 && num<1000){
+					output.innerHTML = facts[num];
+				}
+				else{
+					output.innerHTML = "Sorry no facts for number greater than 1000 or less than 0";
+				}
 			}
 			else{
 				output.innerHTML = "Random fact for that number will appear here...";
