@@ -129,9 +129,9 @@
 	</script>
 </head>
 <body>
-	<h2 id="heading">Type any number</h2>
+	<h2 id="heading">Random Facts App</h2>
 	<div id="container">
-		<input class="style" type="Number" id="input">
+		<input placeholder="enter a number in between 0-99" class="style" type="Number" id="input">
 		<div id="output">Random fact for that number will appear here...</div>
 	</div>
 	<br>
@@ -139,7 +139,7 @@
 
 		<form id="form">
 			<fieldset>
-				<legend style="text-align: center;">Post Your Comment</legend>
+				<legend style="text-align: center;">Please Leave A Comment</legend>
 				
 					Name: 
 					<br><input class="comment-input" type="text" id="name" required="required">
@@ -158,10 +158,108 @@
 	</div>
 	<div id="visitsDisplay"></div>
 	<script>
-		var facts = [];
-		fetch('http://localhost/facts/facts.txt')
-		.then(res=>console.log(res));
-
+		var facts = [
+		"0 is the atomic number of the theoretical element tetraneutron.",
+		"1 is the number of moons orbiting Earth.",
+		"2 is the lowest channel of television in the United States, Canada, Argentina and Mexico on which television signals are broadcast.",
+		"3 is the number of witches in William Shakespeare's Macbeth.",
+		"4 is the number of movements in a symphony.",
+		"5 is the number of completed, numbered piano concertos of Ludwig van Beethoven, Sergei Prokofiev, and Camille Saint-Saëns.",
+		"6 is the jersey number worn by the starting stand-off half/five-eighth in most rugby league competitions.",
+		"7 is the number of SI base units.",
+		"8 is the number of principles of Yong in Chinese calligraphy.",
+		"9 is the number of innings in a regulation, non-tied game of baseball.",
+		"10 is the number of spacetime dimensions in some superstring theories.",
+		"11 is the number of players in an American football team on the field at one time during play.",
+		"12 is the pairs of ribs normally in the human body.",
+		"13 is the speed of rush hour traffic on average in kilometres per hour in London.",
+		"14 is the number of times that a typical dairy cow lies down and stands up a day on average.",
+		"15 is the approximate speed in miles per hour a penguin swims at.",
+		"16 is the number of teams that qualified for the finals of the FIFA World Cup from 1934 through 1978 (although for various reasons, only 15 competed in the 1938 and 1950 finals).",
+		"17 is 'the least random number' as described at MIT, according to hackers' lore.",
+		"18 is the number of bronze monks the Shaolin temple had in Chinese folklore.",
+		"19 is the final year a person is a teenager.",
+		"20 is the number of baby teeth in the deciduous dentition.",
+		"21 is the number of points required to win a game in badminton and table tennis (before 2001).",
+		"22 is the typical length in minutes of a half hour sitcom not including commercials.",
+		"23 is the number of chromosomes normal human sex cells have.",
+		"24 is the number of frames per second at which motion picture film is usually projected.",
+		"25 is the number of points needed to win a set in volleyball under rally scoring rules.",
+		"26 is the number of episodes in a television program each year (usually).",
+		"27 is the number of countries in the European Union (as of August 2011).",
+		"28 is the number of days the curing time of concrete is classically considered to be.",
+		"29 is the number of letters in the Turkish,Finnish, Swedish,Faroese,Danish and Norwegianalphabets.",
+		"30 is the percentage of methane on Earth produced from the flatulence of domesticated cows.",
+		"31 is the number of days in the months January, March, May, July, August, October and December.",
+		"32 is the freezing point of water at sea level in degrees Fahrenheit.",
+		"33 is the number of workers trapped, and also the number of survivors of the 2010 Copiapó mining accident.",
+		"34 is the lucky number of Victor Pelevin's protagonist Stepan Mikhailov in the novel Numbers.",
+		"35 is the minimum age of candidates for election to the United States Presidency.",
+		"36 is the perfect score on the ACT.",
+		"37 is the number of plays William Shakespeare is thought to have written (counting Henry IV as three parts).",
+		"38 is the number of minutes in the shortest war in history in which Zanzibar surrendered to England in 1896.",
+		"39 is the number of books in the Old Testament according to Protestant canon.",
+		"40 is the number of eggs that female alligators lay, which hatch in 60 - 70 days.",
+		"41 is the age at which writer/director Tom Graeff (of Teenagers from Outer Space fame) committed suicide.",
+		"42 is the number of gallons that one barrel of petroleum holds.",
+		"43 is the maximum number of cars participating in a NASCAR race in the Cup Series or Nationwide Series.",
+		"44 is the number of candles in a box of Hanukkah candles.",
+		"45 is the sapphire wedding anniversary in years of marriage.",
+		"46 is the number of mountains in the 46 peaks of the Adirondack mountain range.",
+		"47 is the number of phonemes in English phonology in Received Pronunciation.",
+		"48 is the number of Ptolemaic constellations.",
+		"49 is the number of days and night Siddhartha Gautama spent meditating as a holy man.",
+		"50 is the height in kilometres that a volcano can shoot ash into the sky.",
+		"51 is the atomic number of antimony.",
+		"52 is the number of letters in the English alphabet, if majuscules are distinguished from minuscules.",
+		"53 is the maximum number of facial muscles a smile can require.",
+		"54 is the number of cards in a deck of playing cards, if two jokers are included.",
+		"55 is the number of Delegates who attended the United States Constitutional Convention in 1787.",
+		"56 is the age of Mao Zedong when the People's Republic of China was established on Oct. 1, 1949.",
+		"57 is the number of cm that the smallest man measured, Gul Mohammed (1957-1997) of India.",
+		"58 is the number of counties in California.",
+		"59 is the number on a button commonly worn by feminist activists in the 1970s (based on the claim that a woman earned 59 cents to an equally qualified man's dollar).",
+		"60 is the number of miles polar bears have been known to swim without a rest.",
+		"61 is the number of points required to win a \"standard\" game of Cribbage.",
+		"62 is the atomic number of samarium.",
+		"63 is the atomic number of europium.",
+		"64 is the total number of black and white squares on the game board in chess or draughts.",
+		"65 is the traditional age for retirement in the United Kingdom, Germany and other countries.",
+		"66 is the total number of chapters in the Bible book of Isaiah.",
+		"67 is the number of throws in Judo.",
+		"68 is the ideal temperature (F) for developing black-and-white film.",
+		"69 is the atomic number of thulium, a lanthanide.",
+		"70 is the distance (meter) from archer to targets in Olympic Archery.",
+		"71 is the number of different characters that can be used with a standard English Keyboard, excluding uppercase letters.",
+		"72 is the speed in miles per hour that cheetahs, the fastest land animal, can reach.",
+		"73 is the percentage of girls in Bangladesh that are married by age 18.",
+		"74 is the atomic number of tungsten.",
+		"75 is the age limit for Canadian senators.",
+		"76 is the atomic number of osmium.",
+		"77 is the atomic number of iridium.",
+		"78 is the number of lines that make up Metatron's Cube.",
+		"79 is the record for cumulative weeks at #1 on the Billboard charts, held by Elvis Presley.",
+		"80 is the percentage of American men who say they would marry the same woman if they had it to do all over again.",
+		"81 is the number of squares on a shogi playing board.",
+		"82 is the atomic number of lead.",
+		"83 is the highest UHF channel on older televisions made before the late 1970s.",
+		"84 is the atomic number of polonium.",
+		"85 is the IQ and nickname of Aaron in Alien 3.",
+		"86 is the device number for a lockout relay function in electrical circuit protection schemes.",
+		"87 is the number of tools in the Wenger Swiss Army Knife version XXL, listed in the Guinness Book of World Records as the world's most multi-functional penknife.",
+		"88 is the number of constellations in the sky as defined by the International Astronomical Union.",
+		"89 is the number of units of each colour in the board game Blokus.",
+		"90 is the number of minutes in a football (soccer) match.",
+		"91 is the atomic number of protactinium.",
+		"92 is the number of stories in the Xujiahui Tower proposed to be built in Shanghai, China.",
+		"93 is that approximate distance in millions of miles the Sun is away from the Earth.",
+		"94 is the length of an NBA court in feet.",
+		"95 is the atomic number of americium.",
+		"96 is the rating of Skyrim on metacritic.com.",
+		"97 is the number of minutes it takes the Hubble space telescope to complete an orbit around the Earth.",
+		"98 is the highest jersey number allowed in the National Hockey League (as 99 was retired by the entire league to honor Wayne Gretzky).",
+		"99 is a common price ending in psychological pricing."
+		];
 		var number = document.getElementById("input");
 		var output = document.getElementById("output");
 		var database = firebase.database().ref('comments');
@@ -216,11 +314,11 @@
 			counter++;
 			var num = document.getElementById("input").value;
 			if(num.length>0){
-				if(num>=0 && num<1000){
+				if(num>=0 && num<100){
 					output.innerHTML = facts[num];
 				}
 				else{
-					output.innerHTML = "Sorry no facts for number greater than 1000 or less than 0";
+					output.innerHTML = "Sorry no facts for number greater than 99 or less than 0";
 				}
 			}
 			else{
