@@ -7,9 +7,10 @@
  		body{
  			background-color: lightyellow;
  			color: #444;
+ 			text-align: center;
  		}
  		h2#heading{
- 			margin: inherit auto;
+ 			margin: 20px auto;
  			width: 400px;
  			color: #444;
  			background-color: white;
@@ -19,6 +20,7 @@
  		}
  		div{
  			box-sizing: border-box !important;
+ 			margin: 0 auto;
  		}
  		div#container{
  			border: 2px solid #888;
@@ -61,12 +63,13 @@
  		}
  		input#name, textarea#comment{
  			display: block;
- 			margin: 0 auto;
+ 			margin: 5px auto;
  			padding: 5px;
- 			width: 90%;
+ 			width: 95%;
+
  		}
  		input#name{
- 			width: 88%;
+ 			width: 93%;
  		}
  		input.comment-input:focus{
  			outline: none;
@@ -94,10 +97,6 @@
  			opacity: 0.6;
  			cursor: not-allowed;
  		}
- 		label{
- 			display: inline-block;
- 			margin: 5px 0;
- 		}
  		div#visitsDisplay{
  			margin: 10px;
  		}
@@ -124,35 +123,34 @@
 	</script>
 </head>
 <body>
-	<center>
-		<h2 id="heading">Type any number</h2>
-		<div id="container">
-			<input class="style" type="Number" id="input">
-			<div id="output">Random fact for that number will appear here...</div>
+	<h2 id="heading">Type any number</h2>
+	<div id="container">
+		<input class="style" type="Number" id="input">
+		<div id="output">Random fact for that number will appear here...</div>
+	</div>
+	<br>
+	<div id="comments">
+
+		<form id="form">
+			<fieldset>
+				<legend style="text-align: center;">Post Your Comment</legend>
+				
+					Name: 
+					<br><input class="comment-input" type="text" id="name" required="required">
+				<br>
+					Comment: 
+					<br><textarea style="resize: none; outline: none;" rows="3" class="comment-input" id="comment" required="required"></textarea>
+				<br>
+				<button id="submit" type="submit">Post It</button>
+			</fieldset>
+		</form>
+
+		<h2 style="text-align: center;">Comments</h2>
+		<div id="comments-display">
+			Loading Comments...
 		</div>
-		<br>
-		<div id="comments">
-			<form id="form">
-				<fieldset>
-					<legend style="text-align: center;">Post Your Comment</legend>
-					<label>
-						Name: 
-						<br><input class="comment-input" type="text" id="name" required="required">
-					</label><br>
-					<label>
-						Comment: 
-						<br><textarea style="resize: none; outline: none;" rows="3" class="comment-input" id="comment" required="required"></textarea>
-					</label><br>
-					<button id="submit" type="submit">Post It</button>
-				</fieldset>
-			</form>
-			<h2 style="text-align: center;">Comments</h2>
-			<div id="comments-display">
-				Loading Comments...
-			</div>
-		</div>
-		<div id="visitsDisplay"></div>
-	</center>
+	</div>
+	<div id="visitsDisplay"></div>
 	<script>
 		var number = document.getElementById("input");
 		var output = document.getElementById("output");
