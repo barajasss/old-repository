@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Random number fact generator</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+ 	<style>
+ 		body{
+ 			background-color: lightyellow;
+ 			color: #444;
+ 		}
+ 		h2#heading{
+ 			margin: inherit auto;
+ 			width: 400px;
+ 			color: #444;
+ 			background-color: white;
+ 			padding-bottom: 4px;
+ 			border-bottom: 1.5px double silver;
+ 			border-top: 1.5px double silver;
+ 		}
+ 		div{
+ 			box-sizing: border-box !important;
+ 		}
+ 		div#container{
+ 			border: 2px solid #888;
+ 			background-color: lightgreen;
+ 			padding: 10px;
+ 			width: 400px;
+ 			transition: 0.5s;
+ 		}
+ 		div#output{
+ 			color: white;
+ 			width: 97%;
+ 			min-height: 80px;
+ 			margin: 10px auto;
+ 			background-color: #3aa;
+ 			padding: 10px;
+ 			border: 1px solid white;
+ 		}
+ 		input.style{
+ 			display: inline-block;
+ 			font-size: 17px;
+ 			width: 93%;
+ 			color: black; 
+ 			background: white;
+ 			padding: 5px;
+ 			border: 1px solid #222;
+ 		}
+ 		input.style:focus{
+ 			outline: none;
+ 		}
+ 		div#comments{
+ 			width: 400px;
+ 			padding: 10px;
+ 			text-align: left;
+ 			border: 1px solid black;
+ 		}
+ 		div#comments-display{
+ 			margin-top: 15px;
+ 			padding: 10px;
+ 			border: 1px solid black;
+ 		}
+ 		input#name, textarea#comment{
+ 			display: block;
+ 			margin: 0 auto;
+ 			padding: 5px;
+ 			width: 170%;
+ 		}
+ 		input#name{
+ 			width: 168%;
+ 		}
+ 		input.comment-input:focus{
+ 			outline: none;
+ 		}
+ 		fieldset{
+ 			background-color: khaki;
+ 			border: 1px solid black;
+ 		}
+ 		div#comments-display{
+ 			background-color: white;
+ 		}
+ 		fieldset button{
+ 			width: 100px;
+ 			border: 1px solid white;
+ 			padding: 3px;
+ 			color: white;
+ 			background-color: #78f;
+ 			margin-top: 5px;
+ 		}
+ 		fieldset button.active{
+ 			opacity: 1;
+ 			cursor: pointer;
+ 		}
+ 		fieldset button.deactive{
+ 			opacity: 0.6;
+ 			cursor: not-allowed;
+ 		}
+ 		label{
+ 			display: inline-block;
+ 			margin: 5px 0;
+ 		}
+ 		div#visitsDisplay{
+ 			margin: 10px;
+ 		}
+ 		@media screen and (max-width: 500px){
+ 			div#container, div#comments, h2{
+ 				width: 90%;
+ 			}
+ 		}
+ 	</style>
+ 	<script src="https://www.gstatic.com/firebasejs/5.8.4/firebase.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/5.8.4/firebase-app.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/5.8.4/firebase-database.js"></script>
+	<script>
+	  // Initialize Firebase
+	  var config = {
+	    apiKey: "AIzaSyBydi4rV7GUq0COVihfXmXnFiy3IwYuLTs",
+	    authDomain: "number-game-b9f3a.firebaseapp.com",
+	    databaseURL: "https://number-game-b9f3a.firebaseio.com",
+	    projectId: "number-game-b9f3a",
+	    storageBucket: "number-game-b9f3a.appspot.com",
+	    messagingSenderId: "962080846110"
+	  };
+	  firebase.initializeApp(config);
+	</script>
+</head>
+<body>
+	<center>
+		<h2 id="heading">Type any number</h2>
+		<div id="container">
+			<input class="style" type="Number" id="input">
+			<div id="output">Random fact for that number will appear here...</div>
+		</div>
+		<br>
+		<div id="comments">
+			<form id="form">
+				<fieldset>
+					<legend style="text-align: center;">Post Your Comment</legend>
+					<label>
+						Name: 
+						<br><input class="comment-input" type="text" id="name" required="required">
+					</label><br>
+					<label>
+						Comment: 
+						<br><textarea style="resize: none; outline: none;" rows="3" class="comment-input" id="comment" required="required"></textarea>
+					</label><br>
+					<button id="submit" type="submit">Post It</button>
+				</fieldset>
+			</form>
+			<h2 style="text-align: center;">Comments</h2>
+			<div id="comments-display">
+				Loading Comments...
+			</div>
+		</div>
+		<div id="visitsDisplay"></div>
+	</center>
+	<script>
+		var number = document.getElementById("input");
+		var output = document.getElementById("output");
+		var database = firebase.database().ref('comments');
+		var visitDatabase = firebase.database().ref('visits');
+		var comments = [];
+		var counter = 0;
+		var visits = 0;
+		var commentsDisplay = document.getElementById('comments-display');
+		var form = document.getElementById("form");
+		var submitBtn = document.getElementById('submit');
+		submitBtn.setAttribute('class', 'deactive');
+		submitBtn.disabled = true;
+		//button is activated only when all the comment loads
+
+		database.on('value', function(snapshot){
+			var str = "";
+			if(snapshot.val() != null){
+				comments = snapshot.val();
+				loadComments();
+			}
+			else{
+				commentsDisplay.innerHTML = "No Comments yet";
+			}
+			submitBtn.setAttribute('class', 'active');
+			submitBtn.disabled = false;
+		});
+
+		visitDatabase.once('value', function(snapshot){
+			if(snapshot.val() != null)
+				visits = snapshot.val();
+			visitDatabase.set(++visits);
+			document.getElementById('visitsDisplay').innerHTML = "This page has been visited "+visits+(visits==1?" time":" times");
+		})
+
+		form.onsubmit = function(e){	
+			commentsDisplay.innerHTML = "Loading comments...";
+			var date = new Date();
+			//button is disabled until the comment display refreshes
+			submitBtn.setAttribute('class', 'deactive');
+			submitBtn.disabled = true;
+			comments.push({
+				name: document.getElementById('name').value,
+				comment: document.getElementById('comment').value,
+				date: date.toDateString(),
+				time: date.toLocaleTimeString(),
+				used: counter
+			});
+			database.set(comments);
+		}
+
+		number.addEventListener("input", function(){
+			counter++;
+			var num = document.getElementById("input").value;
+			if(num.length>0){
+				output.innerHTML = "Loading...";
+				fetch('http://numbersapi.com/'+num)
+					.then(res => res.text())
+					.then(data => {
+						output.innerHTML = data;
+					})
+					.catch(err => console.log(err));
+			}
+			else{
+				output.innerHTML = "Random fact for that number will appear here...";
+			}
+		}, false);
+
+		function loadComments(){
+			var str = '<ul style="list-style-type: none;">';
+			comments.forEach(function(comment){
+				str += `
+					<li>
+						<h3>${comment['name']}</h3>
+						Date: ${comment['date']} 
+						<br>Time: ${comment['time']}
+						<p>${comment['comment']}</p>
+					</li>
+				`;
+			});
+			str+="</ul>";
+			commentsDisplay.innerHTML = str;
+		}
+	</script>
+</body>
+</html>
