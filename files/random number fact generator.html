@@ -327,7 +327,7 @@
 		}, false);
 
 		function loadComments(){
-			var str = '<ul style="list-style-type: none;">';
+			var str = '<ul style="padding-left: 0; list-style-type: none;">';
 			comments.forEach(function(comment){
 				str += `
 					<li>
@@ -335,7 +335,8 @@
 						Date: ${comment['date']} 
 						<br>Time: ${comment['time']}
 						<p>${comment['comment']}</p>
-					</li>
+
+					</li><hr>
 				`;
 			});
 			str+="</ul>";
