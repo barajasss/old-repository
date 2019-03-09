@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<!--Program written by Baraja Swargiary on 8th March 2019 1:42 PM -->
+<html>
+<head>
+	<title>Linked Lists</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0", user-scalable=no>
+	<meta name="description" content="Linked List programs">
+	<meta name="author" content="Baraja Swargiary">
+
+
+	<script src="https://www.gstatic.com/firebasejs/5.8.6/firebase.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/5.8.6/firebase-app.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/5.8.6/firebase-database.js"></script>
+	<script>
+	  // Initialize Firebase
+	  var config = {
+	    apiKey: "AIzaSyAdXkYiV12h6nkFni05FsZ6wA5uuRYKZvg",
+	    authDomain: "linked-lists-c3f33.firebaseapp.com",
+	    databaseURL: "https://linked-lists-c3f33.firebaseio.com",
+	    projectId: "linked-lists-c3f33",
+	    storageBucket: "linked-lists-c3f33.appspot.com",
+	    messagingSenderId: "1056936860261"
+	  };
+	  firebase.initializeApp(config);
+	</script>
+	<style>
+		body{
+			background-color: #429;
+		}
+		pre{
+			margin-top: 0;
+			box-sizing: border-box;
+			color: #ffd;
+			font-size: 11px;
+			background-color: #433;
+			padding: 10px;
+			transition: 0.5s;
+		}
+		div.contents{
+			margin: 0 auto;
+			margin-top: -2px;
+			border-radius: 0 0 4px 4px;
+			width: 98%;
+			transition: 0.3s linear;
+			overflow: scroll;
+		}
+		div.active{
+			height: 300px;
+		}
+
+		div.deactive{
+			height: 0px;
+			padding: 0px;
+			border: none;
+			overflow: hidden;
+		}
+		h1{
+			color: #fff;
+			background-color: #88f;
+			padding: 15px;
+			margin: 5px;
+			border-radius: 4px 4px 1px 1px;
+			font-size: 20px;
+		}
+		h1:hover{
+			color: #ddd;
+			cursor: pointer;
+		}
+		div{
+			padding: 0;
+		}
+		h1.heading{
+			font-size: 30px;
+			background-color: transparent;
+			color: black;
+			text-align: center;
+			padding: 20px;
+			background: linear-gradient(to right, white, red, beige, skyblue, lime, yellow, orange, red);
+			background-size: 400%;
+			-webkit-background-clip: text;
+			-webkit-text-fill-color: transparent;
+			animation: colors 5s infinite alternate linear;
+		}
+		@keyframes colors{
+			from{
+				background-position: 0% 0%;
+			}
+			to{
+				background-position: 100% 100%;
+			}
+		}
+		p{
+			margin-top: 30px;
+			border-radius: 10px;
+			padding: 20px;
+			background-color: #bb8;
+			color: #eee;
+		}
+		video{
+			width: 100%;
+			border-radius: 5px;
+			overflow: hidden;
+		}
+		#like-btn{
+			border-radius: 5px;
+			display: block;
+			width: 90%;
+			font-size: 20px;
+			padding: 10px;
+			background-color: #3af;
+			cursor: pointer;
+			color: white;
+			border: none;
+			outline: none;
+			transition: 0.1s;
+			margin: 0 auto;
+		}
+		#like-btn.enable{
+			opacity: 1;
+		}
+		#like-btn.disable{
+			opacity: 0.6;
+		}
+		#like-btn:active{
+			transform: scale(1.08);
+		}
+	</style>
+</head>
+<body>
+
+	<h1 class="heading">Linked List Programs</h1>
+
+
+	<div class="container"
+	><h1 onclick="toggle(this)">Add at beginning</h1
+	><div class="contents deactive" class="deactive">
+		<video autoplay muted loop>
+		<source src="add at beginning.mp4" type="video/mp4">
+			Video not supported
+	</video
+	><pre>
+#include&lt;stdio.h&gt;
+#include&lt;malloc.h&gt;
+
+struct node{
+	int data;
+	struct node *next;
+};
+
+void insert_beg(struct node **start, int data);
+struct node* create_node(int data);
+void display(struct node *start);
+
+int main(){
+	struct node *start=NULL;
+	int size, num, i;
+	printf("\nADD AT BEGINNING\n\n");
+	printf("Enter the number of elements to insert: ");
+	scanf("%d", &size);
+	for(i=0; i < size; i++){
+		printf("Enter element %d: ", i+1);
+		scanf("%d", &num);
+		insert_beg(&start, num);
+	}
+	display(start);
+	return 0;
+}
+
+void insert_beg(struct node **start, int data){
+	struct node *temp; 
+	if(*start == NULL){
+		*start = create_node(data);
+	}
+	else{
+		temp = create_node(data);
+		temp->next = *start;
+		*start = temp;
+	}
+}
+
+struct node* create_node(int data){
+	struct node *temp;
+	temp = (struct node*) malloc(sizeof(struct node));
+	temp->data = data;
+	temp->next = NULL;
+	return temp;
+}
+
+void display(struct node *start){
+	struct node *temp = start;
+	printf("\nThe linked list is: \n");
+	printf("START->");
+	while(temp != NULL){
+		printf("%d -> ", temp->data);
+		temp = temp->next;
+	}
+	printf("NULL");
+}
+	</pre>
+	</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="container"
+><h1 onclick="toggle(this)">Add at end</h1
+	><div class="contents deactive">
+		<video autoplay muted loop>
+		<source src="add at end.mp4" type="video/mp4">
+			Video not supported
+	</video
+	><pre>
+#include&lt;stdio.h&gt;
+#include&lt;malloc.h&gt;
+
+struct node{
+	int data;
+	struct node *next;
+};
+
+void insert_end(struct node **start, int data);
+struct node* create_node(int data);
+void display(struct node *start);
+
+int main(){
+	struct node *start=NULL;
+	int size, num, i;
+	printf("\nADD AT END \n\n");
+	printf("Enter the number of elements to insert: ");
+	scanf("%d", &size);
+	for(i=0; i < size; i++){
+		printf("Enter element %d: ", i+1);
+		scanf("%d", &num);
+		insert_end(&start, num);
+	}
+	display(start);
+	return 0;
+}
+
+void insert_end(struct node **start, int data){
+	struct node *temp, *temp1; 
+	if(*start == NULL){
+		*start = create_node(data);
+	}
+	else{
+		temp = *start;
+		while(temp->next!=NULL)
+			temp = temp->next;
+		temp1 = create_node(data);
+		temp->next = temp1;
+	}
+}
+
+struct node* create_node(int data){
+	struct node *temp;
+	temp = (struct node*) malloc(sizeof(struct node));
+	temp->data = data;
+	temp->next = NULL;
+	return temp;
+}
+
+void display(struct node *start){
+	struct node *temp = start;
+	printf("\nThe linked list is: \n");
+	printf("START->");
+	while(temp != NULL){
+		printf("%d -> ", temp->data);
+		temp = temp->next;
+	}
+	printf("NULL");
+}
+	</pre>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="container"
+><h1 onclick="toggle(this)">Add before a given element</h1
+	><div class="contents deactive">
+		<video autoplay muted loop>
+		<source src="add before.mp4" type="video/mp4">
+			Video not supported
+	</video
+	><pre>
+#include&lt;stdio.h&gt;
+#include&lt;malloc.h&gt;
+
+struct node{
+	int data;
+	struct node *next;
+};
+
+void insert_end(struct node **start, int data);
+void insert_before(struct node **start, int element, int num);
+struct node* create_node(int data);
+void display(struct node *start);
+
+int main(){
+	struct node *start=NULL;
+	int size, num, i, element;
+	char opt;
+	printf("\nADD BEFORE\n\n");
+	printf("Enter the number of elements to insert: ");
+	scanf("%d", &size);
+	for(i=0; i < size; i++){
+		printf("Enter element %d: ", i+1);
+		scanf("%d", &num);
+		insert_end(&start, num);
+	}
+	display(start);
+	getchar();
+	printf("\nDo you want to insert more elements?(y/n): ");
+	scanf("%c", &opt);
+	while(opt=='y'){
+		printf("Enter the element before which to insert: ");
+		scanf("%d", &element);
+		printf("Enter the element to insert: ");
+		scanf("%d", &num);
+		insert_before(&start, element, num);
+		display(start);
+		getchar();
+		printf("\nDo you want to insert more elements?(y/n): ");
+		scanf("%c", &opt);
+	}
+	return 0;
+}
+
+void insert_end(struct node **start, int num){
+	struct node *temp, *temp1; 
+	if(*start == NULL){
+		*start = create_node(num);
+	}
+	else{
+		temp = *start;
+		while(temp->next != NULL){
+			temp=temp->next;
+		}
+		temp1 = create_node(num);
+		temp->next = temp1;
+	}
+}
+
+void insert_before(struct node **start, int element, int num){
+	struct node *temp=NULL, *temp1=NULL, *temp2=NULL;
+	temp = *start;
+	while(temp != NULL && temp->data != element){
+		temp1 = temp;
+		temp = temp->next;
+	}
+	if(temp == NULL){
+		printf("Item not found\n");
+		return;
+	}
+	else if(temp1 == NULL && temp == *start){
+		//insert in the beginning
+		temp1 = create_node(num);
+		temp1->next = *start;
+		*start = temp1;
+	}
+	else{
+		temp2 = create_node(num);
+		temp2->next = temp;
+		temp1->next = temp2;
+	}
+	
+}
+
+struct node* create_node(int data){
+	struct node *temp;
+	temp = (struct node*) malloc(sizeof(struct node));
+	temp->data = data;
+	temp->next = NULL;
+	return temp;
+}
+
+void display(struct node *start){
+	struct node *temp = start;
+	printf("\nThe linked list is: \n");
+	printf("START-> ");
+	while(temp != NULL){
+		printf("%d -> ", temp->data);
+		temp = temp->next;
+	}
+	printf("NULL");
+}
+	</pre>
+	</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="container"
+><h1 onclick="toggle(this)">Add after a given element</h1
+	><div class="contents deactive">
+		<video controls autoplay muted loop>
+		<source src="add after.mp4" type="video/mp4">
+			Video not supported
+	</video
+	><pre>
+#include&lt;stdio.h&gt;
+#include&lt;malloc.h&gt;
+
+struct node{
+	int data;
+	struct node *next;
+};
+
+void insert_end(struct node **start, int data);
+void insert_after(struct node **start, int element, int num);
+struct node* create_node(int data);
+void display(struct node *start);
+
+int main(){
+	struct node *start=NULL;
+	int size, num, i, element;
+	char opt;
+	printf("\nADD AFTER\n\n");
+	printf("Enter the number of elements to insert: ");
+	scanf("%d", &size);
+	for(i=0; i < size; i++){
+		printf("Enter element %d: ", i+1);
+		scanf("%d", &num);
+		insert_end(&start, num);
+	}
+	display(start);
+	getchar();
+	printf("\nDo you want to insert more elements?(y/n): ");
+	scanf("%c", &opt);
+	while(opt=='y'){
+		printf("Enter the element after which to insert: ");
+		scanf("%d", &element);
+		printf("Enter the element to insert: ");
+		scanf("%d", &num);
+		insert_after(&start, element, num);
+		display(start);
+		getchar();
+		printf("\nDo you want to insert more elements?(y/n): ");
+		scanf("%c", &opt);
+	}
+	return 0;
+}
+
+void insert_end(struct node **start, int num){
+	struct node *temp, *temp1; 
+	if(*start == NULL){
+		*start = create_node(num);
+	}
+	else{
+		temp = *start;
+		while(temp->next != NULL){
+			temp=temp->next;
+		}
+		temp1 = create_node(num);
+		temp->next = temp1;
+	}
+}
+
+void insert_after(struct node **start, int element, int num){
+	struct node *temp=NULL, *temp1=NULL;
+	temp = *start;
+	while(temp != NULL && temp->data != element){
+		temp = temp->next;
+	}
+	if(temp == NULL){
+		printf("Item not found\n");
+		return;
+	}
+	else if(temp->next == NULL){
+		//insert at the end
+		temp->next = create_node(num);
+	}
+	else{
+		temp1 = create_node(num);
+		temp1->next = temp->next;
+		temp->next = temp1;
+	}
+	
+}
+
+struct node* create_node(int data){
+	struct node *temp;
+	temp = (struct node*) malloc(sizeof(struct node));
+	temp->data = data;
+	temp->next = NULL;
+	return temp;
+}
+
+void display(struct node *start){
+	struct node *temp = start;
+	printf("\nThe linked list is: \n");
+	printf("START-> ");
+	while(temp != NULL){
+		printf("%d -> ", temp->data);
+		temp = temp->next;
+	}
+	printf("NULL");
+}
+	</pre>
+	</div>
+</div>
+<br>
+<hr>
+<p>
+Note: Most Programs are similar and have repetetive codes. I would suggest you to look for functions which performs the performs the particular operation you are looking for. So don't get overwhelmed by the lots of code. All programs given here are compiled and tested. 
+</p>
+<button id="like-btn">Like</button>
+	<script>
+
+		var likes = 0;
+		var liked = false;
+		var database = firebase.database().ref('likes');
+		var likeBtn = document.getElementById("like-btn");
+		likeBtn.disabled = true;
+		likeBtn.setAttribute('class', 'disable');
+
+		database.on('value', function(snapshot){
+			likeBtn.disabled = false;
+			likeBtn.setAttribute('class', 'enable');
+			if(snapshot.val() != null){
+				likes = snapshot.val();
+			}
+		})
+		likeBtn.onclick = function(){
+			if(!liked){
+				liked = true;
+				database.set(++likes);
+				likeBtn.innerHTML = "Likes "+likes;
+			}
+		}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		var container = document.getElementsByClassName('contents');
+
+		function toggle(thisEl){
+			for(var i=0; i<container.length; i++){
+				element = container[i];
+				if(element != thisEl.nextSibling)
+					element.setAttribute('class', 'contents deactive');
+			}
+			element = thisEl.nextSibling;
+			className = element.getAttribute('class');
+			if(className == 'contents active')
+				element.setAttribute('class', 'contents deactive');
+			else
+				element.setAttribute('class', 'contents active');
+		}
+	</script>
+</body>
+</html>
