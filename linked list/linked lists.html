@@ -31,8 +31,7 @@
 			margin-top: 0;
 			box-sizing: border-box;
 			color: #ffd;
-			font-size: 11px;
-			background-color: #433;
+			font-size: 10px;
 			padding: 10px;
 			transition: 0.5s;
 		}
@@ -40,12 +39,13 @@
 			margin: 0 auto;
 			margin-top: -2px;
 			border-radius: 0 0 4px 4px;
+			background-color: #433;
 			width: 98%;
 			transition: 0.3s linear;
 			overflow: scroll;
 		}
 		div.active{
-			height: 300px;
+			height: 400px;
 		}
 
 		div.deactive{
@@ -98,6 +98,7 @@
 		}
 		video{
 			width: 100%;
+			height: 300px;
 			border-radius: 5px;
 			overflow: hidden;
 		}
@@ -438,7 +439,7 @@ void display(struct node *start){
 <div class="container"
 ><h1 onclick="toggle(this)">Add after a given element</h1
 	><div class="contents deactive">
-		<video controls autoplay muted loop>
+		<video autoplay muted loop>
 		<source src="add after.mp4" type="video/mp4">
 			Video not supported
 	</video
