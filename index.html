@@ -10,7 +10,40 @@
  <link href="css/style.css" type="text/css" rel="stylesheet"> 
  <link href="css/carousel.css" type="text/css" rel="stylesheet"> 
  <link rel="manifest" href="/manifest.json">
+ <style>
+ 	/* PRELOADER STYLES */
+ 	div#preloader-wrapper{
+ 		position: fixed;
+ 		z-index: 10;
+ 		height: 100vh;
+ 		width: 100vw;
+ 		background-color: white;
+
+ 	}
+ 	div#circular-preloader{
+ 		height: 70px;
+ 		width: 70px;
+ 		background-color: white;
+ 		border-radius: 50%;
+ 		border: 10px solid dodgerblue;
+ 		border-top: 10px solid white;
+ 		margin: 0% auto;
+ 		margin-top: 20%;
+ 		animation: rotate 1s infinite linear;
+ 	}
+ 	@keyframes rotate{
+ 		from{
+ 			transform: rotateZ(0deg);
+ 		}
+ 		to{
+ 			transform: rotateZ(360deg);
+ 		}
+ 	}
+ </style>
 <body>
+	<div id="preloader-wrapper">
+		<div id="circular-preloader"></div>
+	</div>
   <div id="dummy"></div>
   <div id="title-container">
     <h1 id="title">Baraja Swargiary</h1>
@@ -121,6 +154,11 @@
   <script src="js/script.js"></script>
   <script src="js/text animation.js"></script>
   <script>
+ 	var preloaderWrapper = document.getElementById("preloader-wrapper");
+ 	window.onload = function(){
+ 		document.body.removeChild(preloaderWrapper);
+ 		console.log("child removed");
+ 	}
   	if('serviceWorker' in navigator){
   		console.log("service worker present")
   		navigator.serviceWorker
